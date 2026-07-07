@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}IPAA — Analytics Dashboard{% endblock %}
+{% block extra_head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+.metric-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1.4rem 1.6rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:1rem}
+.metric-icon{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0}
+.metric-val{font-size:2rem;font-weight:800;letter-spacing:-.5px;line-height:1}
+.metric-lbl{font-size:12px;color:var(--text-muted);margin-top:3px;font-weight:500}
+.metric-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+.chart-wrap{position:relative;height:260px}
+.recent-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:13px}
+.recent-row:last-child{border-bottom:none}
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-header flex-between">
+  <div><div class="page-title">📊 Analytics Dashboard</div><div class="page-sub">Real-time prior authorization metrics and trends</div></div>
+  <a href="/" class="btn btn-primary">+ New Request</a>
+</div>
+
+<!-- KPI Row -->
+<div class="grid-4" style="margin-bottom:1.5rem">
+  <div class="metric-card">
+    <div class="metric-icon" style="background:var(--blue-mid)">📋</div>
+    <div><div class="metric-val" style="color:var(--blue)">{{ stats.total }}</div><div class="metric-lbl">Total Requests</div></div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-icon" style="background:var(--green-bg)">✅</div>
+    <div><div class="metric-val" style="color:var(--green)">{{ stats.approved }}</div><div class="metric-lbl">Approved</div><div class="metric-sub">{{ stats.approval_rate }}% approval rate</div></div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-icon" style="background:var(--red-bg)">❌</div>
+    <div><div class="metric-val" style="color:var(--red)">{{ stats.rejected }}</div><div class="metric-lbl">Rejected</div></div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-icon" style="background:var(--amber-bg)">⏱</div>
+    <div><div class="metric-val" style="color:var(--amber)">{{ stats.avg_time_ms }}ms</div><div class="metric-lbl">Avg Process Time</div></div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <!-- Trend Chart -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--blue-mid)">📈</div>
+      <div class="card-title">7-Day Authorization Trend</div>
+    </div>
+    <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+  </div>
+
+  <!-- Decision Distribution -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--purple-bg)">🥧</div>
+      <div class="card-title">Decision Distribution</div>
+    </div>
+    <div class="chart-wrap"><canvas id="decisionChart"></canvas></div>
+  </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon" style="background:var(--gray-100)">🕐</div>
+    <div><div class="card-title">Recent Authorization Requests</div></div>
+    <a href="/history/" class="btn btn-ghost btn-sm" style="margin-left:auto">View All →</a>
+  </div>
+  {% for r in recent %}
+  <div class="recent-row">
+    <span class="mono" style="color:var(--blue);min-width:120px">{{ r.reference_number }}</span>
+    <span class="text-muted" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.file_name|truncatechars:35 }}</span>
+    <span class="text-muted text-sm" style="min-width:80px">{{ r.document_count }} doc(s)</span>
+    <span class="badge badge-{% if r.decision == 'APPROVE' %}approve{% elif r.decision == 'REJECT' %}reject{% else %}pending{% endif %}">{{ r.decision }}</span>
+    <span class="text-muted text-xs" style="min-width:70px;text-align:right">{{ r.created_at|date:"M d H:i" }}</span>
+    <a href="/result/{{ r.pk }}/" class="btn btn-ghost btn-sm">View</a>
+  </div>
+  {% empty %}
+  <p class="text-muted text-sm" style="text-align:center;padding:1.5rem">No requests yet. <a href="/">Submit your first document →</a></p>
+  {% endfor %}
+</div>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+const trendData = {{ trend_json|safe }};
+const labels = trendData.map(d => d.date);
+new Chart(document.getElementById('trendChart'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'Approved', data: trendData.map(d => d.approved), borderColor: '#059669', backgroundColor: 'rgba(5,150,105,.1)', fill: true, tension: .4 },
+      { label: 'Rejected', data: trendData.map(d => d.rejected), borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,.1)', fill: true, tension: .4 },
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } } }
+});
+
+new Chart(document.getElementById('decisionChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Approved', 'Rejected', 'Insufficient', 'Processing'],
+    datasets: [{ data: [{{ stats.approved }}, {{ stats.rejected }}, {{ stats.insufficient }}, {{ stats.processing }}],
+      backgroundColor: ['#059669','#dc2626','#d97706','#6366f1'], borderWidth: 0 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } }
+});
+</script>
+{% endblock %}

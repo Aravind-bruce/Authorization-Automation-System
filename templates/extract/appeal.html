@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}IPAA — Appeal Builder: {{ req.reference_number }}{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">📜 Appeal Letter Builder</div>
+  <div class="page-sub">Edit and finalize your AI-generated appeal for {{ req.reference_number }}</div>
+</div>
+<div class="grid-2" style="align-items:start">
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--amber-bg)">✏️</div>
+        <div class="card-title">Editable Appeal Letter</div>
+      </div>
+      <textarea id="appeal-editor" style="width:100%;min-height:480px;font-family:'Georgia',serif;font-size:13.5px;line-height:1.8;padding:1rem;border:1px solid var(--gray-200);border-radius:8px;resize:vertical;color:var(--text)">{{ req.appeal_letter|default:"No appeal letter generated. This authorization was approved, or the appeal letter was not generated." }}</textarea>
+      <div style="display:flex;gap:8px;margin-top:.75rem;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="copyAppeal()">📋 Copy to Clipboard</button>
+        <button class="btn btn-ghost" onclick="window.print()">🖨️ Print</button>
+        <a href="/result/{{ req.pk }}/" class="btn btn-ghost">← Back to Result</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--red-bg)">📋</div>
+        <div class="card-title">Case Summary</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13px">
+        <div class="flex-between"><span class="text-muted">Reference</span><span class="mono" style="color:var(--blue)">{{ req.reference_number }}</span></div>
+        <div class="flex-between"><span class="text-muted">Decision</span><span class="badge badge-{% if req.decision == 'APPROVE' %}approve{% else %}reject{% endif %}">{{ req.decision }}</span></div>
+        <div class="flex-between"><span class="text-muted">Risk Level</span><strong>{{ req.risk_level }}</strong></div>
+        <div class="flex-between"><span class="text-muted">Documents</span><strong>{{ req.document_count }}</strong></div>
+        <hr style="border:none;border-top:1px solid var(--gray-200)">
+        <div><div class="text-muted" style="margin-bottom:4px">Rejection Reason</div><div style="line-height:1.5;color:var(--red)">{{ req.reason }}</div></div>
+        {% if req.missing_fields %}
+        <hr style="border:none;border-top:1px solid var(--gray-200)">
+        <div><div class="text-muted" style="margin-bottom:4px">Missing Documentation</div>
+          {% for m in req.missing_fields %}<div style="color:var(--amber);padding:2px 0">• {{ m }}</div>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="card card-sm" style="border-left:4px solid var(--blue)">
+      <div class="card-title" style="margin-bottom:.5rem">📌 Submission Checklist</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--text-muted)">
+        <div>☐ Replace [DATE] with today's date</div>
+        <div>☐ Fill in [PHYSICIAN NAME, CREDENTIALS]</div>
+        <div>☐ Fill in [HOSPITAL/PRACTICE NAME AND ADDRESS]</div>
+        <div>☐ Fill in [INSURANCE COMPANY NAME]</div>
+        <div>☐ Add [PATIENT MRN] from medical records</div>
+        <div>☐ Attach supporting lab results / imaging</div>
+        <div>☐ Physician wet signature required</div>
+        <div>☐ Submit via payer's secure portal or fax</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+function copyAppeal() {
+  const text = document.getElementById('appeal-editor').value;
+  navigator.clipboard.writeText(text).then(() => alert('Appeal letter copied to clipboard!')).catch(() => alert('Please manually copy the text.'));
+}
+</script>
+{% endblock %}

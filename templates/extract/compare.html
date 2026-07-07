@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}IPAA — Compare Requests{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-title">⚖️ Side-by-Side Comparison</div>
+  <div class="page-sub">Compare two authorization requests to identify differences in clinical documentation</div>
+</div>
+
+<!-- Selector -->
+<div class="card">
+  <form method="GET" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+    <div style="flex:1;min-width:220px">
+      <label style="font-size:12px;font-weight:700;color:var(--text-muted);display:block;margin-bottom:5px">REQUEST A</label>
+      <select name="a" style="width:100%;padding:9px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:inherit">
+        <option value="">— Select Request —</option>
+        {% for r in all_reqs %}<option value="{{ r.pk }}" {% if req1 and req1.pk == r.pk %}selected{% endif %}>{{ r.reference_number }} — {{ r.decision }} — {{ r.file_name|truncatechars:30 }}</option>{% endfor %}
+      </select>
+    </div>
+    <div style="flex:1;min-width:220px">
+      <label style="font-size:12px;font-weight:700;color:var(--text-muted);display:block;margin-bottom:5px">REQUEST B</label>
+      <select name="b" style="width:100%;padding:9px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:inherit">
+        <option value="">— Select Request —</option>
+        {% for r in all_reqs %}<option value="{{ r.pk }}" {% if req2 and req2.pk == r.pk %}selected{% endif %}>{{ r.reference_number }} — {{ r.decision }} — {{ r.file_name|truncatechars:30 }}</option>{% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Compare →</button>
+  </form>
+</div>
+
+{% if req1 and req2 %}
+<div class="grid-2">
+  {% for r in req_list %} 
+  <div>
+    <div class="card" style="border-top:4px solid {% if r.decision == 'APPROVE' %}var(--green){% elif r.decision == 'REJECT' %}var(--red){% else %}var(--amber){% endif %}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--blue)">{{ r.reference_number }}</span>
+        <span class="badge badge-{% if r.decision == 'APPROVE' %}approve{% elif r.decision == 'REJECT' %}reject{% else %}pending{% endif %}">{{ r.decision }}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+        <div class="flex-between"><span class="text-muted">Confidence</span><strong>{{ r.confidence_percent }}%</strong></div>
+        <div class="flex-between"><span class="text-muted">Risk Level</span><strong>{{ r.risk_level }}</strong></div>
+        <div class="flex-between"><span class="text-muted">Completeness</span><strong>{{ r.completeness_score|floatformat:0 }}%</strong></div>
+        <div class="flex-between"><span class="text-muted">Documents</span><strong>{{ r.document_count }}</strong></div>
+        <div class="flex-between"><span class="text-muted">Processing</span><strong>{{ r.processing_time_ms }}ms</strong></div>
+        <hr style="border:none;border-top:1px solid var(--gray-200)">
+        <div><div class="text-muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Diagnoses</div>
+          {% for d in r.disease_list %}<span class="tag tag-blue">{{ d }}</span>{% empty %}<span class="text-muted">None</span>{% endfor %}</div>
+        <div><div class="text-muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Treatments</div>
+          {% for t in r.treatment_list %}<span class="tag tag-green">{{ t }}</span>{% empty %}<span class="text-muted">None</span>{% endfor %}</div>
+        <div><div class="text-muted" style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Flags</div>
+          <strong style="color:var(--red)">{{ r.rule_flags.flags|length }}</strong> policy issues detected
+        </div>
+      </div>
+      <div style="margin-top:1rem"><a href="/result/{{ r.pk }}/" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center">View Full Report →</a></div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% elif req1 or req2 %}
+<div class="alert alert-info">Select both Request A and Request B to compare.</div>
+{% endif %}
+{% endblock %}

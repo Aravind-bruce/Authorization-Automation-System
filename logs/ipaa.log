@@ -1,0 +1,1966 @@
+[2026-04-20 19:35:44,162] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 19:35:54,479] ERROR [django.request:249] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 40, in upload_view
+    return render(request, "extract/upload.html", {"recent_cases": recent, "stats": stats})
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/defaulttags.py", line 893, in do_for
+    sequence = parser.compile_filter(bits[in_index + 1])
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 676, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 771, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 682, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/upload.html, Invalid filter: 'split'
+[2026-04-20 19:38:01,078] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 19:38:01,490] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 19:38:43,055] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 19:38:43,414] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 19:39:30,153] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 19:39:30,547] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 19:39:31,809] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 19:39:32,030] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 19:39:35,280] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 19:39:35,519] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 19:40:18,611] INFO [extract:117] [PIPELINE] Request IPAA-3B14D3F6 created | 3 docs
+[2026-04-20 19:40:18,613] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_2TOQ5DG.jpg (type: .jpg)
+[2026-04-20 19:40:31,050] INFO [extract:41] [OCR] Extracted 2205 chars in 12436.39ms | confidence=0.67
+[2026-04-20 19:40:31,052] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template.jpg (type: .jpg)
+[2026-04-20 19:40:31,949] INFO [extract:41] [OCR] Extracted 1303 chars in 896.51ms | confidence=0.89
+[2026-04-20 19:40:31,950] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR.pdf (type: .pdf)
+[2026-04-20 19:40:32,128] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-20 19:40:32,128] INFO [extract:41] [OCR] Extracted 14626 chars in 177.79ms | confidence=0.92
+[2026-04-20 19:40:32,130] INFO [extract:109] [NLP] Analyzing 18323 characters
+[2026-04-20 19:40:34,590] INFO [extract:133] [NLP] Entities: 10 dx, 6 tx, 1 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-20 19:40:34,591] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 19:40:34,595] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-20 19:40:34,596] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 19:40:34,967] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 19:40:34,969] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 19:40:34,975] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 19:40:34,986] INFO [extract:452] [PIPELINE] IPAA-3B14D3F6 done in 16368ms
+[2026-04-20 19:40:51,721] INFO [extract:117] [PIPELINE] Request IPAA-FE3ED2FB created | 5 docs
+[2026-04-20 19:40:51,722] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_khe42Tx.jpg (type: .jpg)
+[2026-04-20 19:40:53,136] INFO [extract:41] [OCR] Extracted 2205 chars in 1414.2ms | confidence=0.67
+[2026-04-20 19:40:53,138] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_YRDsIWl.jpg (type: .jpg)
+[2026-04-20 19:40:54,029] INFO [extract:41] [OCR] Extracted 1303 chars in 890.31ms | confidence=0.89
+[2026-04-20 19:40:54,030] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_zF2oftS.pdf (type: .pdf)
+[2026-04-20 19:40:54,187] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-20 19:40:54,188] INFO [extract:41] [OCR] Extracted 14626 chars in 157.23ms | confidence=0.92
+[2026-04-20 19:40:54,189] INFO [extract:28] [OCR] Processing file: Independent-Medical-Evaluation-Report1.jpg (type: .jpg)
+[2026-04-20 19:40:54,601] INFO [extract:41] [OCR] Extracted 550 chars in 412.33ms | confidence=0.76
+[2026-04-20 19:40:54,603] INFO [extract:28] [OCR] Processing file: Z615.pdf (type: .pdf)
+[2026-04-20 19:40:54,776] INFO [extract:96] [OCR] PDF direct extraction succeeded (6 pages)
+[2026-04-20 19:40:54,776] INFO [extract:41] [OCR] Extracted 14902 chars in 173.06ms | confidence=0.92
+[2026-04-20 19:40:54,778] INFO [extract:109] [NLP] Analyzing 33866 characters
+[2026-04-20 19:40:56,493] INFO [extract:133] [NLP] Entities: 10 dx, 10 tx, 1 meds, 2 procs, 1 ICD, 2 labs
+[2026-04-20 19:40:56,494] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 19:40:56,499] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.440 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-20 19:40:56,500] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 19:40:56,668] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 19:40:56,669] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 19:40:56,672] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 19:40:56,678] INFO [extract:452] [PIPELINE] IPAA-FE3ED2FB done in 4953ms
+[2026-04-20 19:48:36,706] INFO [extract:117] [PIPELINE] Request IPAA-6F578209 created | 1 docs
+[2026-04-20 19:48:36,709] INFO [extract:28] [OCR] Processing file: sample_input_Ahwj6sq.pdf (type: .pdf)
+[2026-04-20 19:48:36,711] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-20 19:48:36,712] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-20 19:48:36,724] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-20 19:48:36,724] INFO [extract:41] [OCR] Extracted 687 chars in 15.37ms | confidence=0.92
+[2026-04-20 19:48:36,727] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-20 19:48:37,223] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-20 19:48:37,224] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 19:48:37,225] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-20 19:48:37,225] INFO [extract:46] [LLM] Invoking Groq | Decision=APPROVE
+[2026-04-20 19:48:37,247] INFO [groq._base_client:1095] Retrying request to /openai/v1/chat/completions in 0.467960 seconds
+[2026-04-20 19:48:37,722] INFO [groq._base_client:1095] Retrying request to /openai/v1/chat/completions in 0.983508 seconds
+[2026-04-20 19:48:38,715] ERROR [extract:165] [LLM] Groq failed: Connection error.
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1007, in request
+    response = self._client.send(
+        request,
+        stream=stream or self._should_stream_response_body(request=request),
+        **kwargs,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1039, in request
+    raise APIConnectionError(request=request) from err
+groq.APIConnectionError: Connection error.
+[2026-04-20 19:48:38,730] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 19:48:38,737] INFO [extract:452] [PIPELINE] IPAA-6F578209 done in 2025ms
+[2026-04-20 22:13:48,487] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 22:13:49,314] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:14:54,832] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 22:14:55,232] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:30:59,712] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 22:31:00,105] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:31:05,320] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 22:31:05,623] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:38:40,004] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:39:04,923] INFO [extract:118] [PIPELINE] Request IPAA-127A6767 created | 2 docs
+[2026-04-20 22:39:04,925] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_OEsuyB4.jpg (type: .jpg)
+[2026-04-20 22:39:06,870] INFO [extract:41] [OCR] Extracted 2205 chars in 1944.4ms | confidence=0.67
+[2026-04-20 22:39:06,871] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_2IZHY1y.jpg (type: .jpg)
+[2026-04-20 22:39:07,768] INFO [extract:41] [OCR] Extracted 1303 chars in 896.27ms | confidence=0.89
+[2026-04-20 22:39:07,770] INFO [extract:109] [NLP] Analyzing 3653 characters
+[2026-04-20 22:39:08,988] INFO [extract:133] [NLP] Entities: 3 dx, 3 tx, 1 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 22:39:08,989] ERROR [extract:415] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 22:39:08,989] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 22:39:08,991] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.280 | Completeness=50.0% | Flags=6 (C:0 H:2 M:1)
+[2026-04-20 22:39:08,991] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 22:39:09,450] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 22:39:09,452] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 22:39:09,462] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 22:39:09,470] INFO [extract:474] [PIPELINE] IPAA-127A6767 DONE
+[2026-04-20 22:39:25,219] INFO [extract:118] [PIPELINE] Request IPAA-B3141816 created | 1 docs
+[2026-04-20 22:39:25,221] INFO [extract:28] [OCR] Processing file: sample_input_Aju2FTu.pdf (type: .pdf)
+[2026-04-20 22:39:25,273] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-20 22:39:25,273] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-20 22:39:25,281] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-20 22:39:25,281] INFO [extract:41] [OCR] Extracted 687 chars in 59.94ms | confidence=0.92
+[2026-04-20 22:39:25,283] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-20 22:39:25,755] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-20 22:39:25,756] ERROR [extract:415] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 22:39:25,756] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 22:39:25,756] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-20 22:39:25,757] INFO [extract:46] [LLM] Invoking Groq | Decision=APPROVE
+[2026-04-20 22:39:26,036] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 22:39:26,038] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 22:39:26,044] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 22:39:26,050] INFO [extract:474] [PIPELINE] IPAA-B3141816 DONE
+[2026-04-20 22:45:51,951] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/validation.py changed, reloading.
+[2026-04-20 22:45:52,555] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:48:15,811] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 22:48:16,187] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:48:26,747] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 22:48:27,075] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 22:48:35,664] INFO [extract:118] [PIPELINE] Request IPAA-D6646313 created | 1 docs
+[2026-04-20 22:48:35,667] INFO [extract:28] [OCR] Processing file: sample_input_8bJgZIl.pdf (type: .pdf)
+[2026-04-20 22:48:35,748] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-20 22:48:35,748] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-20 22:48:35,753] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-20 22:48:35,753] INFO [extract:41] [OCR] Extracted 687 chars in 86.13ms | confidence=0.92
+[2026-04-20 22:48:35,755] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-20 22:48:36,797] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-20 22:48:36,798] ERROR [extract:415] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 22:48:36,798] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 22:48:36,799] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-20 22:48:36,799] INFO [extract:46] [LLM] Invoking Groq | Decision=APPROVE
+[2026-04-20 22:48:37,237] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 22:48:37,239] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 22:48:37,249] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 22:48:37,256] INFO [extract:474] [PIPELINE] IPAA-D6646313 DONE
+[2026-04-20 22:48:51,292] INFO [extract:118] [PIPELINE] Request IPAA-0C1F09F7 created | 1 docs
+[2026-04-20 22:48:51,294] INFO [extract:28] [OCR] Processing file: Z615_5hVor9O.pdf (type: .pdf)
+[2026-04-20 22:48:51,500] INFO [extract:96] [OCR] PDF direct extraction succeeded (6 pages)
+[2026-04-20 22:48:51,500] INFO [extract:41] [OCR] Extracted 14902 chars in 206.65ms | confidence=0.92
+[2026-04-20 22:48:51,503] INFO [extract:109] [NLP] Analyzing 14929 characters
+[2026-04-20 22:48:52,006] INFO [extract:133] [NLP] Entities: 0 dx, 3 tx, 0 meds, 0 procs, 1 ICD, 0 labs
+[2026-04-20 22:48:52,007] ERROR [extract:415] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 22:48:52,007] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 22:48:52,011] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.670 | Completeness=16.7% | Flags=8 (C:0 H:2 M:4)
+[2026-04-20 22:48:52,011] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 22:48:52,282] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 22:48:52,284] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 22:48:52,290] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 22:48:52,297] INFO [extract:474] [PIPELINE] IPAA-0C1F09F7 DONE
+[2026-04-20 22:49:08,137] INFO [extract:118] [PIPELINE] Request IPAA-85F8DAF9 created | 1 docs
+[2026-04-20 22:49:08,139] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_mcA1iQl.jpg (type: .jpg)
+[2026-04-20 22:49:09,428] INFO [extract:41] [OCR] Extracted 1303 chars in 1288.61ms | confidence=0.89
+[2026-04-20 22:49:09,431] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-20 22:49:09,922] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 22:49:09,924] ERROR [extract:415] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 22:49:09,924] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 22:49:09,924] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-20 22:49:09,925] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 22:49:10,215] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 22:49:10,217] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 22:49:10,223] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 22:49:10,229] INFO [extract:474] [PIPELINE] IPAA-85F8DAF9 DONE
+[2026-04-20 22:57:14,628] INFO [extract:118] [PIPELINE] Request IPAA-CAD2ABFB created | 1 docs
+[2026-04-20 22:57:14,632] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_kHXJj4J.jpg (type: .jpg)
+[2026-04-20 22:57:16,129] INFO [extract:41] [OCR] Extracted 2205 chars in 1497.4ms | confidence=0.67
+[2026-04-20 22:57:16,132] INFO [extract:109] [NLP] Analyzing 2296 characters
+[2026-04-20 22:57:16,715] INFO [extract:133] [NLP] Entities: 2 dx, 2 tx, 1 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 22:57:16,716] ERROR [extract:415] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 22:57:16,716] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 22:57:16,717] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.320 | Completeness=50.0% | Flags=6 (C:0 H:2 M:1)
+[2026-04-20 22:57:16,717] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 22:57:17,517] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 22:57:17,518] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 22:57:17,522] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 22:57:17,525] INFO [extract:474] [PIPELINE] IPAA-CAD2ABFB DONE
+[2026-04-20 22:57:56,476] INFO [extract:118] [PIPELINE] Request IPAA-870215E8 created | 1 docs
+[2026-04-20 22:57:56,478] INFO [extract:28] [OCR] Processing file: sample_input_T8aLZGd.pdf (type: .pdf)
+[2026-04-20 22:57:56,478] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-20 22:57:56,479] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-20 22:57:56,487] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-20 22:57:56,487] INFO [extract:41] [OCR] Extracted 687 chars in 9.54ms | confidence=0.92
+[2026-04-20 22:57:56,490] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-20 22:57:56,915] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-20 22:57:56,916] ERROR [extract:415] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 22:57:56,916] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 22:57:56,916] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-20 22:57:56,917] INFO [extract:46] [LLM] Invoking Groq | Decision=APPROVE
+[2026-04-20 22:57:57,188] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 22:57:57,189] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 22:57:57,195] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 22:57:57,200] INFO [extract:474] [PIPELINE] IPAA-870215E8 DONE
+[2026-04-20 23:08:09,170] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:08:09,853] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:08:13,131] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:08:13,389] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:08:20,774] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:08:21,115] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:11:15,387] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:11:15,773] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:11:16,997] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:11:17,244] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:11:22,561] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:11:22,818] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:11:26,058] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:11:26,318] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:11:29,567] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-20 23:11:29,817] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:14:05,561] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:14:05,918] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:14:17,529] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:14:17,858] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:14:20,071] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:14:20,327] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:14:22,543] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:14:22,785] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:14:37,487] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:14:37,809] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:14:49,387] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:14:49,713] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:14:57,104] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:14:57,455] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:15:03,795] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:15:04,136] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:15:08,464] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:15:08,729] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:15:09,924] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:15:10,132] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:15:17,534] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:15:17,807] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:16:19,160] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:16:19,539] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:16:25,982] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:16:26,234] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:18:56,649] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:18:57,018] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:19:00,294] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:19:00,533] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:19:03,777] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:19:04,038] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:19:11,421] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:19:11,674] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:19:18,060] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:19:18,294] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:19:21,561] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:19:21,811] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:19:28,163] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:19:28,414] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:22:38,918] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:22:51,403] INFO [extract:119] [PIPELINE] Request IPAA-47197FFA created | 1 docs
+[2026-04-20 23:22:51,406] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_bZxsjha.jpg (type: .jpg)
+[2026-04-20 23:22:52,851] INFO [extract:41] [OCR] Extracted 1303 chars in 1444.86ms | confidence=0.89
+[2026-04-20 23:22:52,853] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-20 23:22:53,896] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:22:53,898] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:22:53,898] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:22:53,898] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:22:53,899] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-20 23:22:53,899] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:22:54,258] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:22:54,260] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:22:54,270] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:22:54,277] INFO [extract:504] [PIPELINE] IPAA-47197FFA DONE
+[2026-04-20 23:23:12,006] INFO [extract:119] [PIPELINE] Request IPAA-769A5F4B created | 1 docs
+[2026-04-20 23:23:12,007] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_CipPjnP.pdf (type: .pdf)
+[2026-04-20 23:23:12,193] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-20 23:23:12,193] INFO [extract:41] [OCR] Extracted 14626 chars in 186.32ms | confidence=0.92
+[2026-04-20 23:23:12,195] INFO [extract:109] [NLP] Analyzing 14668 characters
+[2026-04-20 23:23:13,543] INFO [extract:133] [NLP] Entities: 7 dx, 3 tx, 0 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-20 23:23:13,544] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:23:13,544] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:23:13,544] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:23:13,547] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-20 23:23:13,548] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:23:13,845] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:23:13,847] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:23:13,853] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:23:13,859] INFO [extract:504] [PIPELINE] IPAA-769A5F4B DONE
+[2026-04-20 23:23:28,722] INFO [extract:119] [PIPELINE] Request IPAA-63DC21EA created | 1 docs
+[2026-04-20 23:23:28,724] INFO [extract:28] [OCR] Processing file: sample_input_2tIMQxy.pdf (type: .pdf)
+[2026-04-20 23:23:28,726] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-20 23:23:28,726] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-20 23:23:28,739] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-20 23:23:28,739] INFO [extract:41] [OCR] Extracted 687 chars in 14.1ms | confidence=0.92
+[2026-04-20 23:23:28,742] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-20 23:23:29,227] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-20 23:23:29,229] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:23:29,229] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:23:29,229] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:23:29,230] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-20 23:23:29,230] INFO [extract:46] [LLM] Invoking Groq | Decision=APPROVE
+[2026-04-20 23:23:29,428] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:23:29,429] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:23:29,434] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:23:29,439] INFO [extract:504] [PIPELINE] IPAA-63DC21EA DONE
+[2026-04-20 23:26:15,090] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/ai_consistency.py changed, reloading.
+[2026-04-20 23:26:15,727] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:26:25,433] INFO [extract:119] [PIPELINE] Request IPAA-18F44B49 created | 1 docs
+[2026-04-20 23:26:25,436] INFO [extract:28] [OCR] Processing file: sample_input_skEVL3E.pdf (type: .pdf)
+[2026-04-20 23:26:25,512] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-20 23:26:25,512] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-20 23:26:25,516] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-20 23:26:25,517] INFO [extract:41] [OCR] Extracted 687 chars in 79.88ms | confidence=0.92
+[2026-04-20 23:26:25,518] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-20 23:26:26,447] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-20 23:26:26,449] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:26:26,449] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:26:26,449] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:26:26,449] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-20 23:26:26,450] INFO [extract:46] [LLM] Invoking Groq | Decision=APPROVE
+[2026-04-20 23:26:26,756] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:26:26,758] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:26:26,768] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:26:26,775] INFO [extract:504] [PIPELINE] IPAA-18F44B49 DONE
+[2026-04-20 23:26:38,380] INFO [extract:119] [PIPELINE] Request IPAA-40651D68 created | 1 docs
+[2026-04-20 23:26:38,382] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_Ch7X03T.pdf (type: .pdf)
+[2026-04-20 23:26:38,527] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-20 23:26:38,528] INFO [extract:41] [OCR] Extracted 14626 chars in 145.43ms | confidence=0.92
+[2026-04-20 23:26:38,530] INFO [extract:109] [NLP] Analyzing 14668 characters
+[2026-04-20 23:26:39,845] INFO [extract:133] [NLP] Entities: 7 dx, 3 tx, 0 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-20 23:26:39,846] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:26:39,846] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:26:39,847] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:26:39,850] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-20 23:26:39,850] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:26:40,064] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:26:40,065] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:26:40,071] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:26:40,077] INFO [extract:504] [PIPELINE] IPAA-40651D68 DONE
+[2026-04-20 23:26:47,714] INFO [extract:119] [PIPELINE] Request IPAA-8E7F6767 created | 1 docs
+[2026-04-20 23:26:47,716] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_qUKY7iL.jpg (type: .jpg)
+[2026-04-20 23:26:49,005] INFO [extract:41] [OCR] Extracted 1303 chars in 1289.49ms | confidence=0.89
+[2026-04-20 23:26:49,008] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-20 23:26:49,455] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:26:49,457] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:26:49,457] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:26:49,457] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:26:49,457] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-20 23:26:49,458] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:26:49,653] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:26:49,654] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:26:49,656] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:26:49,658] INFO [extract:504] [PIPELINE] IPAA-8E7F6767 DONE
+[2026-04-20 23:26:56,808] INFO [extract:119] [PIPELINE] Request IPAA-337C3673 created | 1 docs
+[2026-04-20 23:26:56,811] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_NkVFD1L.jpg (type: .jpg)
+[2026-04-20 23:26:58,219] INFO [extract:41] [OCR] Extracted 2205 chars in 1408.51ms | confidence=0.67
+[2026-04-20 23:26:58,221] INFO [extract:109] [NLP] Analyzing 2296 characters
+[2026-04-20 23:26:58,734] INFO [extract:133] [NLP] Entities: 2 dx, 2 tx, 1 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:26:58,736] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:26:58,736] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:26:58,736] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:26:58,736] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.320 | Completeness=50.0% | Flags=6 (C:0 H:2 M:1)
+[2026-04-20 23:26:58,737] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:26:58,991] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:26:58,992] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:26:58,996] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:26:58,999] INFO [extract:504] [PIPELINE] IPAA-337C3673 DONE
+[2026-04-20 23:29:10,483] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:29:11,208] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:30:07,410] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:30:07,786] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:30:20,747] INFO [extract:119] [PIPELINE] Request IPAA-3F40C1C8 created | 1 docs
+[2026-04-20 23:30:20,749] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_NWos6WJ.jpg (type: .jpg)
+[2026-04-20 23:30:22,508] INFO [extract:41] [OCR] Extracted 2205 chars in 1758.23ms | confidence=0.67
+[2026-04-20 23:30:22,510] INFO [extract:109] [NLP] Analyzing 2296 characters
+[2026-04-20 23:30:23,614] INFO [extract:133] [NLP] Entities: 2 dx, 2 tx, 1 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:30:23,616] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:30:23,616] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:30:23,616] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:30:23,617] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.320 | Completeness=50.0% | Flags=6 (C:0 H:2 M:1)
+[2026-04-20 23:30:23,617] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:30:24,313] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:30:24,314] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:30:24,320] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:30:24,327] INFO [extract:504] [PIPELINE] IPAA-3F40C1C8 DONE
+[2026-04-20 23:30:45,607] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:30:46,150] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:32:04,054] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:32:04,417] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:32:05,632] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-20 23:32:05,876] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:38:56,944] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/insurance_claim/settings.py changed, reloading.
+[2026-04-20 23:38:57,330] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:39:11,083] INFO [extract:119] [PIPELINE] Request IPAA-6673E968 created | 1 docs
+[2026-04-20 23:39:11,085] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_kezglsL.jpg (type: .jpg)
+[2026-04-20 23:39:12,383] INFO [extract:41] [OCR] Extracted 1303 chars in 1298.57ms | confidence=0.89
+[2026-04-20 23:39:12,385] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-20 23:39:13,408] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:39:13,410] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:39:13,410] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:39:13,410] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:39:13,411] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-20 23:39:13,411] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:39:13,987] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:39:13,989] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:39:13,999] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:39:14,006] INFO [extract:504] [PIPELINE] IPAA-6673E968 DONE
+[2026-04-20 23:40:09,872] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/insurance_claim/settings.py changed, reloading.
+[2026-04-20 23:40:10,428] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:40:11,617] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/insurance_claim/settings.py changed, reloading.
+[2026-04-20 23:40:11,844] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:40:15,074] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/insurance_claim/settings.py changed, reloading.
+[2026-04-20 23:40:15,328] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:40:17,509] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/insurance_claim/settings.py changed, reloading.
+[2026-04-20 23:40:17,761] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:40:19,950] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/insurance_claim/settings.py changed, reloading.
+[2026-04-20 23:40:20,218] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:40:55,981] INFO [extract:119] [PIPELINE] Request IPAA-48F0A3DB created | 1 docs
+[2026-04-20 23:40:55,984] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_6hCZXmy.pdf (type: .pdf)
+[2026-04-20 23:40:56,184] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-20 23:40:56,184] INFO [extract:41] [OCR] Extracted 14626 chars in 199.64ms | confidence=0.92
+[2026-04-20 23:40:56,186] INFO [extract:109] [NLP] Analyzing 14668 characters
+[2026-04-20 23:40:58,098] INFO [extract:133] [NLP] Entities: 7 dx, 3 tx, 0 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-20 23:40:58,100] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:40:58,100] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:40:58,100] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:40:58,104] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-20 23:40:58,104] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:40:58,462] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:40:58,465] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:40:58,474] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:40:58,481] INFO [extract:504] [PIPELINE] IPAA-48F0A3DB DONE
+[2026-04-20 23:41:31,033] INFO [extract:119] [PIPELINE] Request IPAA-EE16E565 created | 1 docs
+[2026-04-20 23:41:31,036] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_KicBXFY.jpg (type: .jpg)
+[2026-04-20 23:41:32,765] INFO [extract:41] [OCR] Extracted 2205 chars in 1728.94ms | confidence=0.67
+[2026-04-20 23:41:32,768] INFO [extract:109] [NLP] Analyzing 2296 characters
+[2026-04-20 23:41:33,319] INFO [extract:133] [NLP] Entities: 2 dx, 2 tx, 1 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:41:33,321] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:41:33,321] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:41:33,321] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:41:33,321] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.320 | Completeness=50.0% | Flags=6 (C:0 H:2 M:1)
+[2026-04-20 23:41:33,322] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:41:33,635] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+[2026-04-20 23:41:33,636] ERROR [extract:165] [LLM] Groq failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+[2026-04-20 23:41:33,642] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:41:33,648] INFO [extract:504] [PIPELINE] IPAA-EE16E565 DONE
+[2026-04-20 23:43:14,413] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:43:24,776] INFO [extract:119] [PIPELINE] Request IPAA-011F4F11 created | 1 docs
+[2026-04-20 23:43:24,779] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_n5GMMIV.pdf (type: .pdf)
+[2026-04-20 23:43:24,971] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-20 23:43:24,971] INFO [extract:41] [OCR] Extracted 14626 chars in 192.34ms | confidence=0.92
+[2026-04-20 23:43:24,974] INFO [extract:109] [NLP] Analyzing 14668 characters
+[2026-04-20 23:43:26,894] INFO [extract:133] [NLP] Entities: 7 dx, 3 tx, 0 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-20 23:43:26,895] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:43:26,895] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:43:26,895] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:43:26,898] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-20 23:43:26,899] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:43:29,726] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-20 23:43:29,758] INFO [extract:161] [LLM] Done in 2859ms | tokens=2377
+[2026-04-20 23:43:29,762] INFO [extract:504] [PIPELINE] IPAA-011F4F11 DONE
+[2026-04-20 23:44:12,333] INFO [extract:119] [PIPELINE] Request IPAA-173BA672 created | 1 docs
+[2026-04-20 23:44:12,335] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_V8goDXf.jpg (type: .jpg)
+[2026-04-20 23:44:13,622] INFO [extract:41] [OCR] Extracted 1303 chars in 1287.5ms | confidence=0.89
+[2026-04-20 23:44:13,625] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-20 23:44:14,101] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:44:14,102] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:44:14,102] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:44:14,102] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:44:14,103] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-20 23:44:14,103] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:44:16,315] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-20 23:44:16,317] INFO [extract:161] [LLM] Done in 2213ms | tokens=2291
+[2026-04-20 23:44:16,320] INFO [extract:504] [PIPELINE] IPAA-173BA672 DONE
+[2026-04-20 23:45:07,414] INFO [extract:119] [PIPELINE] Request IPAA-7553BF1B created | 1 docs
+[2026-04-20 23:45:07,416] INFO [extract:28] [OCR] Processing file: sample_input_iloQc2R.pdf (type: .pdf)
+[2026-04-20 23:45:07,417] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-20 23:45:07,418] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-20 23:45:07,429] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-20 23:45:07,429] INFO [extract:41] [OCR] Extracted 687 chars in 13.13ms | confidence=0.92
+[2026-04-20 23:45:07,432] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-20 23:45:07,896] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-20 23:45:07,897] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:45:07,897] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:45:07,897] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:45:07,898] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-20 23:45:07,899] INFO [extract:46] [LLM] Invoking Groq | Decision=APPROVE
+[2026-04-20 23:45:10,790] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-20 23:45:10,793] INFO [extract:161] [LLM] Done in 2894ms | tokens=1734
+[2026-04-20 23:45:10,799] INFO [extract:504] [PIPELINE] IPAA-7553BF1B DONE
+[2026-04-20 23:46:16,022] INFO [extract:119] [PIPELINE] Request IPAA-D9F2378A created | 1 docs
+[2026-04-20 23:46:16,024] INFO [extract:28] [OCR] Processing file: Z615_fd4ITep.pdf (type: .pdf)
+[2026-04-20 23:46:16,205] INFO [extract:96] [OCR] PDF direct extraction succeeded (6 pages)
+[2026-04-20 23:46:16,205] INFO [extract:41] [OCR] Extracted 14902 chars in 181.51ms | confidence=0.92
+[2026-04-20 23:46:16,208] INFO [extract:109] [NLP] Analyzing 14929 characters
+[2026-04-20 23:46:16,710] INFO [extract:133] [NLP] Entities: 0 dx, 3 tx, 0 meds, 0 procs, 1 ICD, 0 labs
+[2026-04-20 23:46:16,712] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:46:16,712] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:46:16,712] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:46:16,715] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.670 | Completeness=16.7% | Flags=8 (C:0 H:2 M:4)
+[2026-04-20 23:46:16,716] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:46:16,919] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+[2026-04-20 23:46:16,920] ERROR [extract:165] [LLM] Groq failed: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01kpker959enfsehfwcy2rvqjr` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 6882, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/extract/llm.py", line 148, in run_llm_agent
+    response = client.chat.completions.create(
+        model=settings.GROQ_MODEL,
+    ...<5 lines>...
+        temperature=settings.GROQ_TEMPERATURE,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/resources/chat/completions.py", line 461, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/openai/v1/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/groq/_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.APIStatusError: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01kpker959enfsehfwcy2rvqjr` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Requested 6882, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2026-04-20 23:46:16,929] WARNING [extract:214] [LLM] Using rule-based fallback.
+[2026-04-20 23:46:16,935] INFO [extract:504] [PIPELINE] IPAA-D9F2378A DONE
+[2026-04-20 23:46:39,874] INFO [extract:119] [PIPELINE] Request IPAA-92F09E74 created | 3 docs
+[2026-04-20 23:46:39,876] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_3WCAgWF.jpg (type: .jpg)
+[2026-04-20 23:46:41,275] INFO [extract:41] [OCR] Extracted 2205 chars in 1399.41ms | confidence=0.67
+[2026-04-20 23:46:41,277] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_Ow02iC4.jpg (type: .jpg)
+[2026-04-20 23:46:42,164] INFO [extract:41] [OCR] Extracted 1303 chars in 886.14ms | confidence=0.89
+[2026-04-20 23:46:42,165] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_gbpBsd6.pdf (type: .pdf)
+[2026-04-20 23:46:42,349] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-20 23:46:42,350] INFO [extract:41] [OCR] Extracted 14626 chars in 184.44ms | confidence=0.92
+[2026-04-20 23:46:42,351] INFO [extract:109] [NLP] Analyzing 18323 characters
+[2026-04-20 23:46:43,955] INFO [extract:133] [NLP] Entities: 10 dx, 6 tx, 1 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-20 23:46:43,957] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:46:43,957] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:46:43,957] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:46:43,960] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-20 23:46:43,961] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:46:45,510] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-20 23:46:45,513] INFO [extract:161] [LLM] Done in 1552ms | tokens=2485
+[2026-04-20 23:46:45,519] INFO [extract:504] [PIPELINE] IPAA-92F09E74 DONE
+[2026-04-20 23:51:09,883] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/ai_consistency.py changed, reloading.
+[2026-04-20 23:51:10,539] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:51:15,922] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/ai_consistency.py changed, reloading.
+[2026-04-20 23:51:16,171] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:51:21,447] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/ai_consistency.py changed, reloading.
+[2026-04-20 23:51:21,782] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:51:32,350] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/ai_consistency.py changed, reloading.
+[2026-04-20 23:51:32,684] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-20 23:51:44,729] INFO [extract:119] [PIPELINE] Request IPAA-26B30FEA created | 1 docs
+[2026-04-20 23:51:44,731] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_WWkXyfh.jpg (type: .jpg)
+[2026-04-20 23:51:46,119] INFO [extract:41] [OCR] Extracted 1303 chars in 1387.48ms | confidence=0.89
+[2026-04-20 23:51:46,121] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-20 23:51:47,198] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-20 23:51:47,199] ERROR [extract:424] [AI CONSISTENCY] Failed: cannot import name 'call_llm' from 'extract.llm' (/Users/aravind/Desktop/ipaa_project/extract/llm.py)
+[2026-04-20 23:51:47,199] ERROR [extract:433] [VALIDATION] Failed: type object 'Stage' has no attribute 'VALIDATION'
+[2026-04-20 23:51:47,199] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-20 23:51:47,200] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-20 23:51:47,200] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-20 23:51:48,927] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-20 23:51:48,949] INFO [extract:161] [LLM] Done in 1749ms | tokens=2188
+[2026-04-20 23:51:48,953] INFO [extract:504] [PIPELINE] IPAA-26B30FEA DONE
+[2026-04-20 23:54:05,561] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/ai_consistency.py changed, reloading.
+[2026-04-20 23:54:06,183] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:00:13,345] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-21 00:00:13,767] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:03:55,887] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-21 00:03:56,267] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:04:05,758] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/views.py changed, reloading.
+[2026-04-21 00:04:06,123] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:07:09,926] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-21 00:07:10,319] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:07:13,500] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-21 00:07:13,745] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:07:15,913] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-21 00:07:16,147] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:07:30,590] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:07:41,693] INFO [extract:119] [PIPELINE] Request IPAA-19FF20D6 created | 1 docs
+[2026-04-21 00:07:41,696] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_GHPq3K7.pdf (type: .pdf)
+[2026-04-21 00:07:41,882] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-21 00:07:41,883] INFO [extract:41] [OCR] Extracted 14626 chars in 186.71ms | confidence=0.92
+[2026-04-21 00:07:41,885] INFO [extract:109] [NLP] Analyzing 14668 characters
+[2026-04-21 00:07:43,849] INFO [extract:133] [NLP] Entities: 7 dx, 3 tx, 0 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-21 00:07:43,850] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:07:45,410] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:07:45,439] INFO [extract:161] [LLM] Done in 1589ms | tokens=2030
+[2026-04-21 00:07:45,443] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:07:45,452] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-21 00:07:45,453] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:07:45,636] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-04-21 00:07:45,637] INFO [groq._base_client:1095] Retrying request to /openai/v1/chat/completions in 17.000000 seconds
+[2026-04-21 00:08:06,071] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:08:06,075] INFO [extract:161] [LLM] Done in 20622ms | tokens=2403
+[2026-04-21 00:08:06,084] INFO [extract:507] [PIPELINE] IPAA-19FF20D6 DONE
+[2026-04-21 00:18:06,197] INFO [extract:119] [PIPELINE] Request IPAA-D18C29A0 created | 1 docs
+[2026-04-21 00:18:06,198] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_bO0r99T.pdf (type: .pdf)
+[2026-04-21 00:18:06,387] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-21 00:18:06,387] INFO [extract:41] [OCR] Extracted 14626 chars in 188.52ms | confidence=0.92
+[2026-04-21 00:18:06,389] INFO [extract:109] [NLP] Analyzing 14668 characters
+[2026-04-21 00:18:07,808] INFO [extract:133] [NLP] Entities: 7 dx, 3 tx, 0 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-21 00:18:07,809] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:18:09,181] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:18:09,182] INFO [extract:161] [LLM] Done in 1373ms | tokens=1923
+[2026-04-21 00:18:09,188] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:18:09,194] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-21 00:18:09,199] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:18:09,393] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-04-21 00:18:09,394] INFO [groq._base_client:1095] Retrying request to /openai/v1/chat/completions in 16.000000 seconds
+[2026-04-21 00:18:28,114] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:18:28,118] INFO [extract:161] [LLM] Done in 18919ms | tokens=2485
+[2026-04-21 00:18:28,126] INFO [extract:507] [PIPELINE] IPAA-D18C29A0 DONE
+[2026-04-21 00:20:31,410] INFO [extract:119] [PIPELINE] Request IPAA-96D43925 created | 1 docs
+[2026-04-21 00:20:31,411] INFO [extract:28] [OCR] Processing file: BNP_Test_Report_Format__PDF_Sample_Template__Example_Guide__Drlogy_evIpi7h.jpg (type: .jpg)
+[2026-04-21 00:20:33,184] INFO [extract:41] [OCR] Extracted 2205 chars in 1772.79ms | confidence=0.67
+[2026-04-21 00:20:33,187] INFO [extract:109] [NLP] Analyzing 2296 characters
+[2026-04-21 00:20:33,725] INFO [extract:133] [NLP] Entities: 2 dx, 2 tx, 1 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-21 00:20:33,726] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:20:35,337] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:20:35,340] INFO [extract:161] [LLM] Done in 1614ms | tokens=1840
+[2026-04-21 00:20:35,345] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:20:35,347] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.320 | Completeness=50.0% | Flags=6 (C:0 H:2 M:1)
+[2026-04-21 00:20:35,349] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:20:37,793] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:20:37,796] INFO [extract:161] [LLM] Done in 2446ms | tokens=2433
+[2026-04-21 00:20:37,804] INFO [extract:507] [PIPELINE] IPAA-96D43925 DONE
+[2026-04-21 00:25:31,855] INFO [django.utils.autoreload:265] /Users/aravind/Desktop/ipaa_project/extract/models.py changed, reloading.
+[2026-04-21 00:25:32,549] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:27:13,700] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader
+[2026-04-21 00:27:23,923] INFO [extract:119] [PIPELINE] Request IPAA-BCF247E0 created | 1 docs
+[2026-04-21 00:27:23,929] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_lcy70oQ.jpg (type: .jpg)
+[2026-04-21 00:27:25,268] INFO [extract:41] [OCR] Extracted 1303 chars in 1338.78ms | confidence=0.89
+[2026-04-21 00:27:25,270] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-21 00:27:26,330] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-21 00:27:26,331] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:27:27,955] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:27:27,973] INFO [extract:161] [LLM] Done in 1641ms | tokens=1649
+[2026-04-21 00:27:27,976] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:27:27,978] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-21 00:27:27,979] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:27:28,178] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-04-21 00:27:28,179] INFO [groq._base_client:1095] Retrying request to /openai/v1/chat/completions in 11.000000 seconds
+[2026-04-21 00:27:42,252] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:27:42,257] INFO [extract:161] [LLM] Done in 14277ms | tokens=2260
+[2026-04-21 00:27:42,265] INFO [extract:507] [PIPELINE] IPAA-BCF247E0 DONE
+[2026-04-21 00:28:47,040] INFO [extract:119] [PIPELINE] Request IPAA-6F8AABC7 created | 1 docs
+[2026-04-21 00:28:47,043] INFO [extract:28] [OCR] Processing file: Sample-filled-in-MR_UzOB9yz.pdf (type: .pdf)
+[2026-04-21 00:28:47,253] INFO [extract:96] [OCR] PDF direct extraction succeeded (10 pages)
+[2026-04-21 00:28:47,253] INFO [extract:41] [OCR] Extracted 14626 chars in 209.72ms | confidence=0.92
+[2026-04-21 00:28:47,255] INFO [extract:109] [NLP] Analyzing 14668 characters
+[2026-04-21 00:28:48,613] INFO [extract:133] [NLP] Entities: 7 dx, 3 tx, 0 meds, 2 procs, 0 ICD, 2 labs
+[2026-04-21 00:28:48,614] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:28:50,501] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:28:50,503] INFO [extract:161] [LLM] Done in 1889ms | tokens=1966
+[2026-04-21 00:28:50,509] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:28:50,518] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.500 | Completeness=66.7% | Flags=6 (C:1 H:1 M:1)
+[2026-04-21 00:28:50,520] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:28:52,515] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:28:52,518] INFO [extract:161] [LLM] Done in 1998ms | tokens=2513
+[2026-04-21 00:28:52,525] INFO [extract:507] [PIPELINE] IPAA-6F8AABC7 DONE
+[2026-04-21 00:30:26,541] ERROR [django.request:249] Internal Server Error: /result/6f8aabc7-49e2-4dc1-843e-e467493d2e55/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 405: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:30:33,351] ERROR [django.request:249] Internal Server Error: /result/6f8aabc7-49e2-4dc1-843e-e467493d2e55/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 405: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:30:33,576] ERROR [django.request:249] Internal Server Error: /result/6f8aabc7-49e2-4dc1-843e-e467493d2e55/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 405: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:30:34,250] ERROR [django.request:249] Internal Server Error: /result/6f8aabc7-49e2-4dc1-843e-e467493d2e55/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 405: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:30:34,699] ERROR [django.request:249] Internal Server Error: /result/6f8aabc7-49e2-4dc1-843e-e467493d2e55/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 405: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:31:10,609] INFO [extract:119] [PIPELINE] Request IPAA-A4E77EDA created | 1 docs
+[2026-04-21 00:31:10,611] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_RX9YTis.jpg (type: .jpg)
+[2026-04-21 00:31:11,552] INFO [extract:41] [OCR] Extracted 1303 chars in 941.08ms | confidence=0.89
+[2026-04-21 00:31:11,554] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-21 00:31:12,017] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-21 00:31:12,019] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:31:13,311] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:31:13,314] INFO [extract:161] [LLM] Done in 1296ms | tokens=1650
+[2026-04-21 00:31:13,322] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:31:13,324] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-21 00:31:13,327] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:31:13,537] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-04-21 00:31:13,538] INFO [groq._base_client:1095] Retrying request to /openai/v1/chat/completions in 11.000000 seconds
+[2026-04-21 00:31:27,634] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:31:27,637] INFO [extract:161] [LLM] Done in 14310ms | tokens=2326
+[2026-04-21 00:31:27,644] INFO [extract:507] [PIPELINE] IPAA-A4E77EDA DONE
+[2026-04-21 00:33:46,969] INFO [extract:119] [PIPELINE] Request IPAA-48F136C1 created | 1 docs
+[2026-04-21 00:33:46,972] INFO [extract:28] [OCR] Processing file: Police-Medical-Report-Template_4as8jlW.jpg (type: .jpg)
+[2026-04-21 00:33:47,909] INFO [extract:41] [OCR] Extracted 1303 chars in 936.35ms | confidence=0.89
+[2026-04-21 00:33:47,911] INFO [extract:109] [NLP] Analyzing 1355 characters
+[2026-04-21 00:33:48,444] INFO [extract:133] [NLP] Entities: 1 dx, 1 tx, 0 meds, 0 procs, 0 ICD, 0 labs
+[2026-04-21 00:33:48,445] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:33:50,061] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:33:50,064] INFO [extract:161] [LLM] Done in 1619ms | tokens=1746
+[2026-04-21 00:33:50,071] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:33:50,073] INFO [extract:743] [RULES] Decision=REJECT | Risk=0.450 | Completeness=25.0% | Flags=8 (C:0 H:2 M:3)
+[2026-04-21 00:33:50,076] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:33:52,951] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:33:52,953] INFO [extract:161] [LLM] Done in 2876ms | tokens=2258
+[2026-04-21 00:33:52,958] INFO [extract:507] [PIPELINE] IPAA-48F136C1 DONE
+[2026-04-21 00:37:05,410] ERROR [django.request:249] Internal Server Error: /result/48f136c1-cd0d-4909-9520-ca052fbb5f63/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 394: 'endif', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:40:38,270] ERROR [django.request:249] Internal Server Error: /result/48f136c1-cd0d-4909-9520-ca052fbb5f63/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 398: 'else', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:40:38,395] ERROR [django.request:249] Internal Server Error: /result/48f136c1-cd0d-4909-9520-ca052fbb5f63/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 398: 'else', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:40:38,615] ERROR [django.request:249] Internal Server Error: /result/48f136c1-cd0d-4909-9520-ca052fbb5f63/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 398: 'else', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:40:38,719] ERROR [django.request:249] Internal Server Error: /result/48f136c1-cd0d-4909-9520-ca052fbb5f63/
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'else'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/aravind/Desktop/ipaa_project/extract/views.py", line 563, in result_view
+    return render(request, "extract/result.html", context)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aravind/Desktop/ipaa_project/venv/lib/python3.14/site-packages/django/template/base.py", line 634, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: /Users/aravind/Desktop/ipaa_project/templates/extract/result.html, Invalid block tag on line 398: 'else', expected 'endblock'. Did you forget to register or load this tag?
+[2026-04-21 00:42:19,157] INFO [extract:119] [PIPELINE] Request IPAA-8787DF45 created | 1 docs
+[2026-04-21 00:42:19,158] INFO [extract:28] [OCR] Processing file: sample_input_4NyH2lw.pdf (type: .pdf)
+[2026-04-21 00:42:19,160] WARNING [pypdf._reader:471] Ignoring wrong pointing object 12 0 (offset 0)
+[2026-04-21 00:42:19,161] WARNING [pypdf._reader:471] Ignoring wrong pointing object 13 0 (offset 0)
+[2026-04-21 00:42:19,170] INFO [extract:96] [OCR] PDF direct extraction succeeded (1 pages)
+[2026-04-21 00:42:19,170] INFO [extract:41] [OCR] Extracted 687 chars in 11.14ms | confidence=0.92
+[2026-04-21 00:42:19,171] INFO [extract:109] [NLP] Analyzing 722 characters
+[2026-04-21 00:42:19,744] INFO [extract:133] [NLP] Entities: 2 dx, 6 tx, 1 meds, 0 procs, 1 ICD, 2 labs
+[2026-04-21 00:42:19,745] INFO [extract:46] [LLM] Invoking Groq | Decision=CHECK
+[2026-04-21 00:42:20,960] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:42:20,964] INFO [extract:161] [LLM] Done in 1219ms | tokens=1589
+[2026-04-21 00:42:20,971] INFO [extract:149] [RULES] Starting 30-rule enterprise evaluation.
+[2026-04-21 00:42:20,972] INFO [extract:743] [RULES] Decision=APPROVE | Risk=0.000 | Completeness=91.7% | Flags=1 (C:0 H:0 M:0)
+[2026-04-21 00:42:20,975] INFO [extract:46] [LLM] Invoking Groq | Decision=REJECT
+[2026-04-21 00:42:21,165] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+[2026-04-21 00:42:21,167] INFO [groq._base_client:1095] Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+[2026-04-21 00:42:30,685] INFO [httpx:1025] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-21 00:42:30,689] INFO [extract:161] [LLM] Done in 9714ms | tokens=1981
+[2026-04-21 00:42:30,697] INFO [extract:507] [PIPELINE] IPAA-8787DF45 DONE
+[2026-05-01 14:53:40,477] INFO [django.utils.autoreload:681] Watching for file changes with StatReloader

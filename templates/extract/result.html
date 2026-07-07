@@ -1,0 +1,479 @@
+{% extends "base.html" %}
+{% block title %}IPAA — Result: {{ req.reference_number }}{% endblock %}
+{% block extra_head %}
+<style>
+.decision-banner{border-radius:var(--radius);padding:1.75rem 2rem;display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.decision-banner::after{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:currentColor;opacity:.05}
+.decision-banner.approve{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac;color:var(--green)}
+.decision-banner.reject{background:linear-gradient(135deg,#fff1f2,#ffe4e6);border:1px solid #fca5a5;color:var(--red)}
+.decision-banner.insufficient{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1px solid #fcd34d;color:var(--amber)}
+.db-icon{font-size:3rem;flex-shrink:0;line-height:1}
+.db-content h2{font-size:1.4rem;font-weight:800;line-height:1.2}
+.db-content .reason{font-size:13.5px;opacity:.85;margin-top:5px;line-height:1.55;max-width:620px}
+.db-meta{margin-left:auto;text-align:right;flex-shrink:0;min-width:150px}
+.db-ref{font-family:'JetBrains Mono',monospace;font-size:13px;opacity:.7}
+.db-time{font-size:12px;margin-top:3px;opacity:.6}
+.doc-chip{display:inline-flex;align-items:center;gap:6px;background:var(--gray-100);border:1px solid var(--gray-200);border-radius:8px;padding:5px 12px;font-size:12px;font-weight:500;margin:3px}
+
+/* Flag card */
+.flag-card{border:1px solid var(--gray-200);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.flag-card-header{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;cursor:pointer;transition:background .15s}
+.flag-card-header:hover{background:var(--gray-50)}
+.flag-code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--gray-100);border:1px solid var(--gray-200);padding:2px 8px;border-radius:5px;flex-shrink:0;color:var(--text-muted);margin-top:1px}
+.flag-cat{font-size:10.5px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;flex-shrink:0;margin-top:2px}
+.flag-msg{font-size:13px;font-weight:600;flex:1;line-height:1.4}
+.flag-chevron{margin-left:auto;flex-shrink:0;font-size:12px;color:var(--text-muted);transition:transform .2s}
+.flag-chevron.open{transform:rotate(180deg)}
+.flag-card-body{display:none;border-top:1px solid var(--gray-200);padding:12px 14px;background:var(--gray-50)}
+.flag-card-body.visible{display:block}
+.flag-detail-row{display:flex;gap:8px;font-size:12.5px;margin-bottom:8px;line-height:1.5}
+.flag-detail-label{font-weight:700;color:var(--text-muted);min-width:80px;flex-shrink:0;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;padding-top:1px}
+.flag-detail-val{color:var(--text);flex:1}
+.flag-action-box{background:#fff;border:1px solid var(--amber-border);border-radius:8px;padding:10px 12px;margin-top:6px;font-size:12.5px;color:#78350f;line-height:1.6}
+.flag-action-label{font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);margin-bottom:4px}
+
+/* Severity colours on flag header border-left */
+.sev-CRITICAL .flag-card{border-left:4px solid var(--red)}
+.sev-HIGH .flag-card{border-left:4px solid #ea580c}
+.sev-MEDIUM .flag-card{border-left:4px solid var(--amber)}
+.sev-LOW .flag-card, .sev-INFO .flag-card{border-left:4px solid #94a3b8}
+
+.badge-sev-CRITICAL{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.badge-sev-HIGH{background:#fff7ed;color:#c2410c;border:1px solid #fdba74}
+.badge-sev-MEDIUM{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.badge-sev-LOW,.badge-sev-INFO{background:var(--gray-100);color:var(--slate-light);border:1px solid var(--gray-200)}
+
+/* Positive signals */
+.pos-signal{display:flex;align-items:flex-start;gap:7px;font-size:13px;padding:7px 0;border-bottom:1px solid var(--gray-200);color:var(--green)}
+.pos-signal:last-child{border-bottom:none}
+
+/* Tabs */
+.tab-nav{display:flex;gap:4px;border-bottom:2px solid var(--gray-200);margin-bottom:1.25rem;flex-wrap:wrap}
+.tab-btn{padding:8px 16px;font-size:13px;font-weight:600;border:none;background:none;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-2px;border-radius:6px 6px 0 0;transition:all .15s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);background:var(--blue-mid)}
+.tab-pane{display:none}.tab-pane.active{display:block}
+
+.ai-block{background:var(--blue-mid);border:1px solid #bfdbfe;border-radius:10px;padding:1.25rem 1.5rem;font-size:13.5px;line-height:1.75;white-space:pre-wrap;word-break:break-word;color:var(--text);margin-bottom:10px}
+.ai-block.green{background:var(--green-bg);border-color:var(--green-border)}
+.ai-block.amber{background:var(--amber-bg);border-color:var(--amber-border)}
+.ai-label{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:.5rem}
+.ai-label.blue{color:var(--blue-dark)}.ai-label.green{color:#065f46}.ai-label.amber{color:#92400e}
+
+.appeal-box{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:10px;padding:1.5rem;font-family:'Georgia',serif;font-size:13.5px;line-height:1.85;white-space:pre-wrap;word-break:break-word}
+.ocr-pre{background:#0f172a;color:#94a3b8;font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:1.25rem;border-radius:9px;max-height:260px;overflow-y:auto;white-space:pre-wrap;line-height:1.6}
+.audit-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--gray-200);font-size:12.5px}
+.audit-row:last-child{border-bottom:none}
+.audit-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.audit-dot.ok{background:var(--green)}.audit-dot.err{background:var(--red)}
+.audit-stage{font-weight:700;min-width:85px}
+.audit-ms{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);margin-left:auto}
+.kv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.kv-item{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:8px;padding:8px 12px}
+.kv-label{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);font-weight:700;margin-bottom:2px}
+.kv-val{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.rule-summary-box{background:var(--slate);border-radius:10px;padding:1rem 1.25rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;text-align:center}
+.rs-val{font-size:1.5rem;font-weight:800;color:#fff}
+.rs-lbl{font-size:11px;color:#94a3b8;margin-top:2px}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Decision Banner -->
+<div class="decision-banner {% if req.decision == 'APPROVE' %}approve{% elif req.decision == 'REJECT' %}reject{% else %}insufficient{% endif %}">
+  <div class="db-icon">{% if req.decision == 'APPROVE' %}✅{% elif req.decision == 'REJECT' %}❌{% else %}⚠️{% endif %}</div>
+  <div class="db-content">
+    <h2>{% if req.decision == 'APPROVE' %}Authorization Approved{% elif req.decision == 'REJECT' %}Authorization Rejected{% else %}Insufficient Information{% endif %}</h2>
+    <p class="reason">{{ req.reason }}</p>
+    <div style="margin-top:10px;display:flex;align-items:center;gap:8px;max-width:380px">
+      <span style="font-size:12px;font-weight:700;flex-shrink:0;opacity:.8">Confidence {{ confidence_pct }}%</span>
+      <div class="pbar-wrap" style="flex:1">
+        <div class="pbar {% if confidence_pct >= 70 %}pbar-high{% elif confidence_pct >= 40 %}pbar-mid{% else %}pbar-low{% endif %}" style="width:{{ confidence_pct }}%"></div>
+      </div>
+    </div>
+    <div style="margin-top:10px">
+      {% for doc in docs %}<span class="doc-chip">{% if doc.file_type == 'PDF' %}📄{% else %}📷{% endif %} {{ doc.file_name|truncatechars:28 }}</span>{% endfor %}
+    </div>
+  </div>
+  <div class="db-meta no-print">
+    <div class="db-ref">{{ req.reference_number }}</div>
+    <div class="db-time">{{ req.created_at|date:"M d, Y H:i" }}</div>
+    <div class="db-time">⏱ {{ req.processing_time_ms }}ms | {{ req.document_count }} doc(s)</div>
+    <div style="margin-top:8px;display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+      <span class="badge badge-{% if req.risk_level == 'LOW' %}approve{% elif req.risk_level == 'HIGH' %}reject{% else %}pending{% endif %}">{{ req.risk_level }} Risk</span>
+      <span class="badge badge-info">{{ req.completeness_score|floatformat:0 }}% Complete</span>
+      <span class="badge 
+        {% if req.fraud_risk == 'HIGH' %}badge-reject
+        {% elif req.fraud_risk == 'MEDIUM' %}badge-pending
+        {% else %}badge-approve{% endif %}">
+        🛡 Fraud Risk: {{ req.fraud_risk }}
+      </span>
+      {% if rule_summary.is_emergency %}<span class="badge badge-purple">⚡ Expedited</span>{% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Rule Summary Strip -->
+{% if rule_summary %}
+<div class="rule-summary-box no-print" style="margin-bottom:1.25rem">
+  <div><div class="rs-val">{{ rule_summary.total_rules_evaluated }}</div><div class="rs-lbl">Rules Evaluated</div></div>
+  <div><div class="rs-val" style="color:#f87171">{{ rule_summary.critical }}</div><div class="rs-lbl">Critical Flags</div></div>
+  <div><div class="rs-val" style="color:#fb923c">{{ rule_summary.high }}</div><div class="rs-lbl">High Flags</div></div>
+  <div><div class="rs-val" style="color:#4ade80">{{ rule_summary.completeness_criteria_met }}/12</div><div class="rs-lbl">Criteria Met</div></div>
+</div>
+{% endif %}
+
+<!-- KPI Strip -->
+<div class="grid-4 no-print" style="margin-bottom:1.25rem">
+  <div class="stat-box"><div class="stat-val" style="font-size:1.4rem">{{ req.ocr_confidence|floatformat:0 }}%</div><div class="stat-lbl">OCR Confidence</div></div>
+  <div class="stat-box"><div class="stat-val" style="font-size:1.4rem;color:var(--red)">{{ flags|length }}</div><div class="stat-lbl">Total Policy Flags</div></div>
+  <div class="stat-box"><div class="stat-val" style="font-size:1.4rem;color:var(--blue)">{{ disease_list|length }}</div><div class="stat-lbl">Diagnoses Found</div></div>
+  <div class="stat-box"><div class="stat-val" style="font-size:1.4rem;color:var(--green)">{{ treatment_list|length }}</div><div class="stat-lbl">Treatments Found</div></div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:#fef3c7">🛡</div>
+      <div>
+        <div class="card-title">Document Trust Analysis</div>
+        <div class="card-subtitle">Fraud & validation signals</div>
+      </div>
+    </div>
+  
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+      <strong>Validation Score</strong>
+      <span>{{ req.validation_score|floatformat:2 }}</span>
+    </div>
+  
+    {% if req.validation_flags %}
+      {% for f in req.validation_flags %}
+        <div style="font-size:13px;padding:6px 0;border-bottom:1px solid var(--gray-200);color:#b45309">
+          ⚠ {{ f }}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div style="color:var(--green)">✅ No suspicious signals detected</div>
+    {% endif %}
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:#dbeafe">🧠</div>
+      <div>
+        <div class="card-title">AI Medical Reasoning</div>
+        <div class="card-subtitle">Clinical consistency analysis</div>
+      </div>
+    </div>
+  
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+      <strong>Consistency Level</strong>
+      <span>{{ req.consistency_level }}</span>
+    </div>
+  
+    {% if req.consistency_flags %}
+      {% for f in req.consistency_flags %}
+        <div style="font-size:13px;padding:6px 0;border-bottom:1px solid var(--gray-200);color:#b91c1c">
+          ⚠ {{ f }}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div style="color:var(--green)">✅ Clinically valid</div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="grid-2">
+
+  <!-- LEFT COLUMN -->
+  <div>
+
+    <!-- Clinical Entities -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--green-bg)">🧬</div>
+        <div><div class="card-title">Extracted Clinical Entities</div><div class="card-subtitle">Universal NLP — any medical document type</div></div>
+      </div>
+      {% if disease_list %}
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:5px">🏥 Diagnoses / Conditions</div>
+        {% for d in disease_list %}<span class="tag tag-blue">{{ d }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      {% if treatment_list %}
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:5px">💊 Treatments Requested</div>
+        {% for t in treatment_list %}<span class="tag tag-green">{{ t }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      {% if medication_list %}
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:5px">🔬 Medications (with dosage)</div>
+        {% for m in medication_list %}<span class="tag tag-purple">{{ m }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      {% if procedure_list %}
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:5px">🏨 Procedures / Tests</div>
+        {% for p in procedure_list %}<span class="tag tag-amber">{{ p }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      {% if icd_list %}
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:5px">📋 ICD-10 Codes</div>
+        {% for c in icd_list %}<span class="tag" style="background:#f5f3ff;color:#5b21b6;font-family:'JetBrains Mono',monospace">{{ c }}</span>{% endfor %}
+      </div>
+      {% endif %}
+      {% if req.allergies %}
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:5px">⚠️ Allergies</div>
+        <span class="tag" style="background:#fff7ed;color:#9a3412">{{ req.allergies }}</span>
+      </div>
+      {% endif %}
+      {% if not disease_list and not treatment_list and not icd_list %}
+      <p class="text-sm text-muted">No clinical entities extracted. Document may be unreadable or blank.</p>
+      {% endif %}
+      {% if lab_values or vitals %}
+      <hr class="divider">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:8px">📊 Lab Values & Vitals</div>
+      <div class="kv-grid">
+        {% for k,v in lab_values.items %}<div class="kv-item"><div class="kv-label">{{ k }}</div><div class="kv-val">{{ v }}</div></div>{% endfor %}
+        {% for k,v in vitals.items %}<div class="kv-item"><div class="kv-label">{{ k }}</div><div class="kv-val">{{ v }}</div></div>{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Positive Signals -->
+    {% if positive_signals %}
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--green-bg)">✅</div>
+        <div><div class="card-title">Positive Compliance Signals</div><div class="card-subtitle">Factors that strengthened this submission</div></div>
+      </div>
+      {% for sig in positive_signals %}
+      <div class="pos-signal"><span>✓</span><span>{{ sig }}</span></div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Policy Compliance Flags - Full Detail -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--red-bg)">⚖️</div>
+        <div><div class="card-title">Policy Compliance Flags</div><div class="card-subtitle">30-rule engine — CMS, NCQA, URAC, InterQual® standards</div></div>
+      </div>
+
+      {% if not flags %}
+        <p class="text-sm" style="color:var(--green)">✅ All 30 policy checks passed. No compliance issues identified.</p>
+      {% else %}
+
+        {% if critical_flags %}
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--red);margin:0 0 8px;padding:6px 10px;background:var(--red-bg);border-radius:6px">🚨 Critical — Automatic Rejection Triggers ({{ critical_flags|length }})</div>
+        {% for f in critical_flags %}
+        <div class="sev-CRITICAL">
+          <div class="flag-card">
+            <div class="flag-card-header" onclick="toggleFlag(this)">
+              <span class="flag-code">{{ f.code }}</span>
+              <span class="badge badge-sev-CRITICAL" style="flex-shrink:0;font-size:10px">CRITICAL</span>
+              <span class="flag-cat">{{ f.category }}</span>
+              <span class="flag-msg">{{ f.message }}</span>
+              <span class="flag-chevron">▼</span>
+            </div>
+            <div class="flag-card-body">
+              <div class="flag-detail-row"><span class="flag-detail-label">Policy</span><span class="flag-detail-val">{{ f.policy }}</span></div>
+              <div class="flag-action-label">⚡ Required Action</div>
+              <div class="flag-action-box">{{ f.action }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if high_flags %}
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#c2410c;margin:12px 0 8px;padding:6px 10px;background:#fff7ed;border-radius:6px">🔴 High Severity ({{ high_flags|length }})</div>
+        {% for f in high_flags %}
+        <div class="sev-HIGH">
+          <div class="flag-card">
+            <div class="flag-card-header" onclick="toggleFlag(this)">
+              <span class="flag-code">{{ f.code }}</span>
+              <span class="badge badge-sev-HIGH" style="flex-shrink:0;font-size:10px">HIGH</span>
+              <span class="flag-cat">{{ f.category }}</span>
+              <span class="flag-msg">{{ f.message }}</span>
+              <span class="flag-chevron">▼</span>
+            </div>
+            <div class="flag-card-body">
+              <div class="flag-detail-row"><span class="flag-detail-label">Policy</span><span class="flag-detail-val">{{ f.policy }}</span></div>
+              <div class="flag-action-label">⚡ Required Action</div>
+              <div class="flag-action-box">{{ f.action }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if medium_flags %}
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--amber);margin:12px 0 8px;padding:6px 10px;background:var(--amber-bg);border-radius:6px">🟡 Medium Severity ({{ medium_flags|length }})</div>
+        {% for f in medium_flags %}
+        <div class="sev-MEDIUM">
+          <div class="flag-card">
+            <div class="flag-card-header" onclick="toggleFlag(this)">
+              <span class="flag-code">{{ f.code }}</span>
+              <span class="badge badge-sev-MEDIUM" style="flex-shrink:0;font-size:10px">MEDIUM</span>
+              <span class="flag-cat">{{ f.category }}</span>
+              <span class="flag-msg">{{ f.message }}</span>
+              <span class="flag-chevron">▼</span>
+            </div>
+            <div class="flag-card-body">
+              <div class="flag-detail-row"><span class="flag-detail-label">Policy</span><span class="flag-detail-val">{{ f.policy }}</span></div>
+              <div class="flag-action-label">⚡ Required Action</div>
+              <div class="flag-action-box">{{ f.action }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if info_flags %}
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--slate-light);margin:12px 0 8px;padding:6px 10px;background:var(--gray-100);border-radius:6px">ℹ️ Advisory / Informational ({{ info_flags|length }})</div>
+        {% for f in info_flags %}
+        <div class="sev-LOW">
+          <div class="flag-card">
+            <div class="flag-card-header" onclick="toggleFlag(this)">
+              <span class="flag-code">{{ f.code }}</span>
+              <span class="badge badge-sev-LOW" style="flex-shrink:0;font-size:10px">{{ f.severity }}</span>
+              <span class="flag-cat">{{ f.category }}</span>
+              <span class="flag-msg">{{ f.message }}</span>
+              <span class="flag-chevron">▼</span>
+            </div>
+            <div class="flag-card-body">
+              <div class="flag-detail-row"><span class="flag-detail-label">Policy</span><span class="flag-detail-val">{{ f.policy }}</span></div>
+              <div class="flag-action-label">💡 Recommendation</div>
+              <div class="flag-action-box">{{ f.action }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+      {% endif %}
+
+      {% if missing_fields %}
+      <hr class="divider">
+      <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--red);margin-bottom:8px">📋 Missing Documentation Checklist</div>
+      {% for m in missing_fields %}
+      <div style="display:flex;align-items:flex-start;gap:8px;font-size:13px;padding:5px 0;border-bottom:1px solid var(--gray-200);color:var(--amber)">
+        <span style="color:var(--red);flex-shrink:0;margin-top:1px">☐</span><span>{{ m }}</span>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div>
+
+    <!-- AI Analysis Tabs -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--blue-mid)">🤖</div>
+        <div><div class="card-title">AI Clinical Analysis</div><div class="card-subtitle">Groq LLaMA-3 70B — Professional Medical Reasoning</div></div>
+      </div>
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('tab-explain',this)">🧠 Explanation</button>
+        <button class="tab-btn" onclick="showTab('tab-summary',this)">📋 Summary</button>
+        <button class="tab-btn" onclick="showTab('tab-suggest',this)">💡 Actions</button>
+        {% if req.ai_appeal %}<button class="tab-btn" onclick="showTab('tab-appeal',this)">📜 Appeal</button>{% endif %}
+      </div>
+      <div id="tab-explain" class="tab-pane active">
+        {% if req.ai_explanation %}<div class="ai-block"><div class="ai-label blue">Decision Analysis</div>{{ req.ai_explanation }}</div>
+        {% else %}<p class="text-sm text-muted">AI explanation unavailable.</p>{% endif %}
+      </div>
+      <div id="tab-summary" class="tab-pane">
+        {% if req.ai_summary %}<div class="ai-block green"><div class="ai-label green">Clinical Case Summary</div>{{ req.ai_summary }}</div>
+        {% else %}<p class="text-sm text-muted">Clinical summary not generated.</p>{% endif %}
+      </div>
+      <div id="tab-suggest" class="tab-pane">
+        {% if req.ai_action %}<div class="ai-block amber"><div class="ai-label amber">Actionable Recommendations</div>{{ req.ai_action }}</div>
+        {% else %}<p class="text-sm text-muted">No recommendations generated.</p>{% endif %}
+      </div>
+      {% comment %} <div id="tab-suggest" class="tab-pane">
+        {% if req.ai_appeal %}<div class="ai-block amber"><div class="ai-label amber">Appeal Letter</div>{{ req.ai_appeal }}</div>
+        {% else %}<p class="text-sm text-muted">No appeal letter generated.</p>{% endif %}
+      </div> {% endcomment %}
+      {% if req.ai_appeal %}
+      <div id="tab-appeal" class="tab-pane">
+        <div class="appeal-box" id="appeal-text">{{ req.ai_appeal }}</div>
+        <div style="display:flex;gap:8px;margin-top:.75rem;flex-wrap:wrap">
+          <button class="btn btn-ghost btn-sm" onclick="copyAppeal()">📋 Copy Letter</button>
+          <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨️ Print</button>
+          <a href="/appeal/{{ req.pk }}/" class="btn btn-primary btn-sm">🔧 Appeal Builder</a>
+        </div>
+      </div>
+      {% endif %} 
+    </div>
+
+    <!-- OCR Output -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--gray-100)">🔍</div>
+        <div><div class="card-title">Raw OCR Extraction</div>
+          <div class="card-subtitle">{{ req.extracted_text|length }} characters across {{ req.document_count }} document(s)</div></div>
+      </div>
+      {% if req.extracted_text %}<pre class="ocr-pre">{{ req.extracted_text|truncatechars:3000 }}</pre>
+      {% else %}<p class="text-sm text-muted">No text extracted. Check document quality.</p>{% endif %}
+    </div>
+
+    <!-- Audit Trail -->
+    <div class="card no-print">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--gray-100)">🕵️</div>
+        <div><div class="card-title">Pipeline Audit Trail</div><div class="card-subtitle">Stage-by-stage processing log</div></div>
+      </div>
+      {% for log in audit_logs %}
+      <div class="audit-row">
+        <div class="audit-dot {% if log.success %}ok{% else %}err{% endif %}"></div>
+        <span class="audit-stage">{{ log.get_stage_display }}</span>
+        <span class="text-muted" style="font-size:12px;flex:1">{{ log.message|truncatechars:85 }}</span>
+        <span class="audit-ms">{{ log.duration_ms }}ms &nbsp; {{ log.timestamp|date:"H:i:s" }}</span>
+      </div>
+      {% empty %}<p class="text-sm text-muted">No audit logs.</p>{% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<!-- Actions -->
+<div class="flex-between no-print" style="margin-top:1.25rem">
+  <a href="/" class="btn btn-ghost">← New Request</a>
+  <div class="flex gap-2">
+    <a href="/compare/?a={{ req.pk }}" class="btn btn-ghost">⚖️ Compare</a>
+    <a href="/guidelines/" class="btn btn-ghost">📖 Guidelines</a>
+    <a href="/history/" class="btn btn-ghost">📋 History</a>
+    {% if req.appeal_letter %}<a href="/appeal/{{ req.pk }}/" class="btn btn-primary">📜 Appeal Builder</a>{% endif %}
+    <button onclick="window.print()" class="btn btn-ghost">🖨️ Print</button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function toggleFlag(header) {
+  const body = header.nextElementSibling;
+  const chev = header.querySelector('.flag-chevron');
+  body.classList.toggle('visible');
+  chev.classList.toggle('open');
+}
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function copyAppeal() {
+  const text = document.getElementById('appeal-text')?.innerText;
+  if (text) navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const bar = document.querySelector('.pbar');
+  if (bar) { const w = bar.style.width; bar.style.width = '0'; setTimeout(() => bar.style.width = w, 100); }
+});
+</script>
+{% endblock %}

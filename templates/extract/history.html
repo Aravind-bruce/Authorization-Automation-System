@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}IPAA — Authorization History{% endblock %}
+{% block extra_head %}
+<style>
+.filter-bar{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1rem 1.25rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:1.25rem;box-shadow:var(--shadow)}
+.search-input{flex:1;min-width:200px;padding:8px 13px;border:1px solid var(--gray-200);border-radius:8px;font-size:13.5px;font-family:inherit}
+.search-input:focus{outline:none;border-color:var(--blue)}
+select.filter-sel{padding:8px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:inherit;cursor:pointer;color:var(--text)}
+.stats-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-bottom:1.25rem}
+.ss-box{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:1rem;text-align:center;box-shadow:var(--shadow)}
+.ss-val{font-size:1.6rem;font-weight:800;line-height:1}
+.ss-lbl{font-size:11.5px;color:var(--text-muted);margin-top:3px;font-weight:500}
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-header flex-between">
+  <div><div class="page-title">📋 Authorization History</div><div class="page-sub">Complete log of all prior authorization requests</div></div>
+  <a href="/" class="btn btn-primary">+ New Request</a>
+</div>
+
+<!-- Stats -->
+<div class="stats-strip">
+  <div class="ss-box"><div class="ss-val">{{ stats.total }}</div><div class="ss-lbl">Total</div></div>
+  <div class="ss-box"><div class="ss-val" style="color:var(--green)">{{ stats.approved }}</div><div class="ss-lbl">Approved</div></div>
+  <div class="ss-box"><div class="ss-val" style="color:var(--red)">{{ stats.rejected }}</div><div class="ss-lbl">Rejected</div></div>
+  <div class="ss-box"><div class="ss-val" style="color:var(--amber)">{{ stats.insufficient }}</div><div class="ss-lbl">Insufficient</div></div>
+  <div class="ss-box"><div class="ss-val" style="color:var(--blue)">{{ stats.approval_rate }}%</div><div class="ss-lbl">Approval Rate</div></div>
+</div>
+
+<!-- Filters -->
+<form method="GET" class="filter-bar">
+  <input class="search-input" type="text" name="q" placeholder="🔍 Search reference, diagnosis, treatment..." value="{{ search }}">
+  <select name="decision" class="filter-sel">
+    <option value="">All Decisions</option>
+    <option value="APPROVE" {% if decision_filter == 'APPROVE' %}selected{% endif %}>✅ Approved</option>
+    <option value="REJECT" {% if decision_filter == 'REJECT' %}selected{% endif %}>❌ Rejected</option>
+    <option value="INSUFFICIENT" {% if decision_filter == 'INSUFFICIENT' %}selected{% endif %}>⚠️ Insufficient</option>
+  </select>
+  <select name="risk" class="filter-sel">
+    <option value="">All Risk Levels</option>
+    <option value="LOW" {% if risk_filter == 'LOW' %}selected{% endif %}>🟢 Low</option>
+    <option value="MEDIUM" {% if risk_filter == 'MEDIUM' %}selected{% endif %}>🟡 Medium</option>
+    <option value="HIGH" {% if risk_filter == 'HIGH' %}selected{% endif %}>🔴 High</option>
+  </select>
+  <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+  {% if decision_filter or risk_filter or search %}<a href="/history/" class="btn btn-ghost btn-sm">Clear</a>{% endif %}
+</form>
+
+<!-- Table -->
+<div class="card" style="padding:0;overflow:hidden">
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Reference</th><th>Document(s)</th><th>Type</th><th>Diagnosis</th>
+        <th>Decision</th><th>Confidence</th><th>Risk</th><th>Docs</th><th>Date</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in requests %}
+      <tr>
+        <td><span class="mono" style="color:var(--blue)">{{ r.reference_number }}</span></td>
+        <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.file_name|truncatechars:30 }}</td>
+        <td><span class="badge badge-info" style="font-size:10px">{{ r.get_request_type_display }}</span></td>
+        <td class="text-muted" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.disease|truncatechars:35|default:"—" }}</td>
+        <td><span class="badge badge-{% if r.decision == 'APPROVE' %}approve{% elif r.decision == 'REJECT' %}reject{% else %}pending{% endif %}">{{ r.decision }}</span></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:6px;min-width:80px">
+            <div class="pbar-wrap" style="flex:1;height:6px"><div class="pbar {% if r.confidence_percent >= 70 %}pbar-high{% elif r.confidence_percent >= 40 %}pbar-mid{% else %}pbar-low{% endif %}" style="width:{{ r.confidence_percent }}%"></div></div>
+            <span style="font-size:11.5px;font-weight:600">{{ r.confidence_percent }}%</span>
+          </div>
+        </td>
+        <td><span class="badge {% if r.risk_level == 'LOW' %}badge-approve{% elif r.risk_level == 'HIGH' %}badge-reject{% else %}badge-pending{% endif %}" style="font-size:10px">{{ r.risk_level|default:"—" }}</span></td>
+        <td style="text-align:center">{{ r.document_count }}</td>
+        <td class="text-muted" style="white-space:nowrap">{{ r.created_at|date:"M d, H:i" }}</td>
+        <td><a href="/result/{{ r.pk }}/" class="btn btn-ghost btn-sm">View</a></td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="10" style="text-align:center;padding:2.5rem;color:var(--text-muted)">
+        No results found. <a href="/">Submit your first document →</a>
+      </td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

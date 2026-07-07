@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}IPAA — PA Guidelines & Rules Reference{% endblock %}
+{% block extra_head %}
+<style>
+.rule-row{border:1px solid var(--gray-200);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.rule-header{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;background:var(--white);transition:background .15s}
+.rule-header:hover{background:var(--gray-50)}
+.rule-code{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;min-width:55px;flex-shrink:0}
+.rule-cat-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;flex-shrink:0;text-transform:uppercase;letter-spacing:.3px}
+.rule-title{font-size:13.5px;font-weight:600;flex:1}
+.rule-chevron{margin-left:auto;font-size:12px;color:var(--text-muted);transition:transform .2s;flex-shrink:0}
+.rule-chevron.open{transform:rotate(180deg)}
+.rule-body{display:none;border-top:1px solid var(--gray-200);padding:14px 16px;background:var(--gray-50)}
+.rule-body.visible{display:block}
+.rule-detail{font-size:13px;margin-bottom:10px;line-height:1.6}
+.rule-detail strong{color:var(--text);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:3px}
+.rule-action{background:#fff;border:1px solid var(--amber-border);border-radius:8px;padding:10px 12px;font-size:12.5px;color:#78350f;line-height:1.6}
+.rule-action-lbl{font-weight:800;font-size:11px;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+
+.cat-section{margin-bottom:1.75rem}
+.cat-header{display:flex;align-items:center;gap:10px;padding:.75rem 1rem;background:var(--slate);border-radius:10px;margin-bottom:.75rem;color:#fff}
+.cat-icon{font-size:1.25rem}
+.cat-title{font-weight:800;font-size:15px}
+.cat-sub{font-size:12px;opacity:.7;margin-left:auto}
+
+.tip-box{background:var(--blue-mid);border:1px solid #bfdbfe;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.tip-box h3{font-size:14px;font-weight:700;color:var(--blue-dark);margin-bottom:.75rem}
+.tip-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;margin-bottom:6px;line-height:1.5;color:var(--text)}
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-header flex-between">
+  <div>
+    <div class="page-title">📖 PA Guidelines & 30-Rule Reference</div>
+    <div class="page-sub">Real-world insurance prior authorization rules based on CMS, NCQA, URAC, and commercial payer standards</div>
+  </div>
+  <a href="/" class="btn btn-primary">+ New Request</a>
+</div>
+
+<!-- Quick Tips -->
+<div class="tip-box">
+  <h3>💡 How to Maximize Approval Likelihood</h3>
+  <div class="tip-item">✅ <span><strong>Always include ICD-10 codes</strong> — "E11.9" is more powerful than "diabetes"</span></div>
+  <div class="tip-item">✅ <span><strong>Add CPT codes</strong> — procedure codes enable automated coverage matching</span></div>
+  <div class="tip-item">✅ <span><strong>Document step-therapy failure explicitly</strong> — name the drug, dose, duration, and exact failure reason</span></div>
+  <div class="tip-item">✅ <span><strong>Cite a clinical guideline</strong> — "Per 2024 ADA Standards, HbA1c >9% requires insulin" doubles approval odds</span></div>
+  <div class="tip-item">✅ <span><strong>Include lab values</strong> — HbA1c, eGFR, LDL, BNP relevant to the diagnosis justify treatment intensity</span></div>
+  <div class="tip-item">✅ <span><strong>Sign the document</strong> — unsigned submissions are auto-rejected at most payers</span></div>
+  <div class="tip-item">✅ <span><strong>For specialty drugs</strong> — always include TB screen, HepB/C serology, and baseline CBC/LFT</span></div>
+</div>
+
+{% for cat_code, cat_info in categories.items %}
+<div class="cat-section">
+  <div class="cat-header">
+    <span class="cat-icon">{{ cat_info.icon }}</span>
+    <span class="cat-title">Category {{ cat_code }} — {{ cat_info.name }}</span>
+    <span class="cat-sub">{{ cat_info.rules|length }} rules</span>
+  </div>
+  {% for rule in cat_info.rules %}
+  <div class="rule-row" style="border-left:4px solid {% if rule.severity == 'CRITICAL' %}var(--red){% elif rule.severity == 'HIGH' %}#ea580c{% elif rule.severity == 'MEDIUM' %}var(--amber){% else %}#94a3b8{% endif %}">
+    <div class="rule-header" onclick="toggleRule(this)">
+      <span class="rule-code" style="color:{% if rule.severity == 'CRITICAL' %}var(--red){% elif rule.severity == 'HIGH' %}#c2410c{% else %}var(--text-muted){% endif %}">{{ rule.code }}</span>
+      <span class="rule-cat-badge" style="background:{% if rule.severity == 'CRITICAL' %}var(--red-bg);color:var(--red){% elif rule.severity == 'HIGH' %}#fff7ed;color:#c2410c{% elif rule.severity == 'MEDIUM' %}var(--amber-bg);color:var(--amber){% else %}var(--gray-100);color:var(--slate-light){% endif %}">{{ rule.severity }}</span>
+      <span class="rule-title">{{ rule.title }}</span>
+      <span class="rule-chevron">▼</span>
+    </div>
+    <div class="rule-body">
+      <div class="rule-detail"><strong>What This Checks</strong>{{ rule.description }}</div>
+      <div class="rule-detail"><strong>Regulatory Basis</strong>{{ rule.policy }}</div>
+      <div class="rule-action-lbl">⚡ How to Satisfy This Rule</div>
+      <div class="rule-action">{{ rule.action }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}
+{% block extra_scripts %}
+<script>
+function toggleRule(header) {
+  const body = header.nextElementSibling;
+  const chev = header.querySelector('.rule-chevron');
+  body.classList.toggle('visible');
+  chev.classList.toggle('open');
+}
+</script>
+{% endblock %}

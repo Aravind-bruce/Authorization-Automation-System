@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+{% block title %}IPAA — Submit Prior Authorization{% endblock %}
+{% block extra_head %}
+<style>
+.hero{text-align:center;padding:2rem 1rem 1.5rem}
+.hero h1{font-size:2rem;font-weight:800;letter-spacing:-.5px;margin-bottom:.4rem}
+.hero p{color:var(--text-muted);font-size:15px;max-width:560px;margin:0 auto;line-height:1.6}
+.pipeline{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;margin:1.5rem 0}
+.pipe-step{display:flex;align-items:center;gap:5px;background:var(--white);border:1px solid var(--gray-200);border-radius:99px;padding:5px 13px;font-size:12px;font-weight:600;color:var(--text-muted)}
+.pipe-step .dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.pipe-arrow{color:var(--gray-300);font-size:16px}
+
+/* Upload zone */
+.drop-zone{border:2.5px dashed var(--gray-300);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--gray-50);position:relative;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.drop-zone:hover,.drop-zone.dragover{border-color:var(--blue);background:var(--blue-mid)}
+.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.drop-icon{font-size:2.5rem;margin-bottom:.75rem}
+.drop-title{font-size:16px;font-weight:700;margin-bottom:.3rem}
+.drop-sub{font-size:13px;color:var(--text-muted)}
+.format-pills{display:flex;justify-content:center;gap:6px;margin-top:1rem;flex-wrap:wrap}
+.fmt-pill{background:var(--white);border:1px solid var(--gray-200);border-radius:6px;padding:4px 12px;font-size:11.5px;font-weight:700;color:var(--slate)}
+
+/* File queue */
+#file-queue{margin-top:1rem}
+.file-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--white);border:1px solid var(--green-border);border-radius:9px;margin-bottom:6px;font-size:13px;animation:slideIn .2s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.file-item .fi-icon{font-size:1.2rem;flex-shrink:0}
+.file-item .fi-name{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-item .fi-size{color:var(--text-muted);font-size:12px;flex-shrink:0}
+.file-item .fi-remove{background:none;border:none;cursor:pointer;color:var(--red);font-size:16px;padding:2px 6px;border-radius:4px;flex-shrink:0}
+.file-item .fi-remove:hover{background:var(--red-bg)}
+.file-count-badge{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;margin-left:6px}
+
+/* Form fields */
+.form-group{margin-bottom:1.1rem}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--slate-mid);margin-bottom:5px}
+.form-control{width:100%;padding:9px 13px;border:1px solid var(--gray-200);border-radius:8px;font-size:13.5px;font-family:inherit;background:var(--white);transition:border-color .15s;color:var(--text)}
+.form-control:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+select.form-control{cursor:pointer}
+
+/* Submit */
+.btn-analyze{width:100%;padding:15px;font-size:16px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border:none;cursor:pointer;font-weight:800;letter-spacing:.2px;transition:all .25s;box-shadow:0 4px 16px rgba(37,99,235,.3);margin-top:.5rem}
+.btn-analyze:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,99,235,.4)}
+.btn-analyze:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+/* Loading */
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(255,255,255,.95);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.loading-overlay.active{display:flex}
+.spinner{width:52px;height:52px;border:4px solid var(--gray-200);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-title{font-size:1.25rem;font-weight:800;color:var(--text)}
+.loading-steps{display:flex;flex-direction:column;gap:7px;min-width:260px}
+.l-step{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--text-muted);padding:7px 12px;border-radius:8px;transition:all .3s}
+.l-step.active{color:var(--blue);background:var(--blue-mid);font-weight:600}
+.l-step.done{color:var(--green)}
+
+/* Recent cases */
+.case-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:13px}
+.case-row:last-child{border-bottom:none}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+  <h1>🏥 Prior Authorization AI Agent</h1>
+  <p>Upload one or multiple medical documents. Our AI extracts clinical entities, evaluates 15 insurance policy rules, and generates explainable decisions with full appeal support.</p>
+</div>
+
+<div class="pipeline">
+  <div class="pipe-step"><span class="dot"></span>Upload</div><span class="pipe-arrow">→</span>
+  <div class="pipe-step"><span class="dot"></span>OCR</div><span class="pipe-arrow">→</span>
+  <div class="pipe-step"><span class="dot"></span>NLP</div><span class="pipe-arrow">→</span>
+  <div class="pipe-step"><span class="dot"></span>15 Rules</div><span class="pipe-arrow">→</span>
+  <div class="pipe-step"><span class="dot"></span>Groq AI</div><span class="pipe-arrow">→</span>
+  <div class="pipe-step"><span class="dot"></span>Decision</div>
+</div>
+
+<div class="grid-2" style="align-items:start">
+
+  <!-- Left: Upload Form -->
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--blue-mid)">📤</div>
+        <div>
+          <div class="card-title">Submit Authorization Request</div>
+          <div class="card-subtitle">Upload up to 10 documents per submission</div>
+        </div>
+      </div>
+
+      <form method="POST" enctype="multipart/form-data" id="upload-form">
+        {% csrf_token %}
+
+        <!-- Drop Zone -->
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" name="documents" id="file-input" accept=".png,.jpg,.jpeg,.pdf" multiple>
+          <div class="drop-icon">📋</div>
+          <div class="drop-title">Drag & Drop or Click to Upload</div>
+          <div class="drop-sub">PNG, JPG, JPEG, PDF &nbsp;•&nbsp; Max 15MB each &nbsp;•&nbsp; Up to 10 files</div>
+          <div class="format-pills">
+            <span class="fmt-pill">📷 PNG</span>
+            <span class="fmt-pill">📷 JPG</span>
+            <span class="fmt-pill">📄 PDF</span>
+            <span class="fmt-pill">🔬 Lab Reports</span>
+            <span class="fmt-pill">📝 Clinical Notes</span>
+            <span class="fmt-pill">💊 Prescriptions</span>
+          </div>
+        </div>
+
+        <!-- File Queue -->
+        <div id="file-queue"></div>
+        <div id="file-count" style="font-size:12px;color:var(--text-muted);margin-top:4px;text-align:right;display:none">
+          <span id="file-count-num">0</span> file(s) selected
+        </div>
+
+        <hr class="divider">
+
+        <!-- Submission Metadata -->
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Request Type</label>
+            <select name="request_type" class="form-control">
+              <option value="INITIAL">Initial Authorization</option>
+              <option value="RENEWAL">Renewal / Continuation</option>
+              <option value="EMERGENCY">Emergency Authorization</option>
+              <option value="APPEAL">Appeal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Priority Level</label>
+            <select name="priority" class="form-control">
+              <option value="ROUTINE">Routine</option>
+              <option value="URGENT">Urgent</option>
+              <option value="STAT">STAT / Emergency</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Submitter Name / Department <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+          <input type="text" name="submitter_name" class="form-control" placeholder="e.g. Dr. Priya Sharma — Cardiology">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Additional Notes <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+          <textarea name="notes" class="form-control" rows="3" placeholder="Any context you want the AI to know about this case..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-analyze" id="submit-btn" disabled>
+          🔍 Analyze Documents
+        </button>
+        <p class="text-muted text-xs mt-1" style="text-align:center">Avg. processing time: 8–20 seconds depending on document count</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Right: Info + Recent -->
+  <div>
+
+    <!-- Stats Strip -->
+    {% if stats.total %}
+    <div class="grid-2" style="margin-bottom:1.25rem">
+      <div class="stat-box">
+        <div class="stat-val" style="color:var(--blue)">{{ stats.total }}</div>
+        <div class="stat-lbl">Total Processed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" style="color:var(--green)">{{ stats.approval_rate }}%</div>
+        <div class="stat-lbl">Approval Rate</div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- How it works -->
+    <div class="card card-sm" style="margin-bottom:1.25rem">
+      <div class="card-header" style="margin-bottom:.75rem;padding-bottom:.75rem">
+        <div class="card-icon" style="background:var(--purple-bg)">⚡</div>
+        <div class="card-title">What Happens After Upload</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        {% for step in steps %}
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:700;flex-shrink:0">{{ forloop.counter }}</div>
+          <span>{{ step }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Tips -->
+    <div class="card card-sm" style="border-left:4px solid var(--blue);margin-bottom:1.25rem">
+      <div class="card-title" style="margin-bottom:.75rem">💡 For Best Results</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--text-muted)">
+        <div>• Upload all relevant documents together (prescription + lab + referral)</div>
+        <div>• Include ICD-10 codes if available in your documents</div>
+        <div>• Clinical notes with physician signatures process best</div>
+        <div>• Clear, high-resolution scans improve OCR accuracy</div>
+        <div>• Documents should include diagnosis + proposed treatment</div>
+      </div>
+    </div>
+
+    <!-- Recent Cases -->
+    {% if recent_cases %}
+    <div class="card card-sm">
+      <div class="card-header" style="margin-bottom:.75rem;padding-bottom:.75rem">
+        <div class="card-icon" style="background:var(--gray-100)">🕐</div>
+        <div class="card-title">Recent Submissions</div>
+      </div>
+      {% for case in recent_cases %}
+      <div class="case-row">
+        <span class="mono" style="color:var(--blue);min-width:110px">{{ case.reference_number }}</span>
+        <span class="flex-1 text-muted text-sm" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ case.file_name|truncatechars:28 }}</span>
+        <span class="badge badge-{% if case.decision == 'APPROVE' %}approve{% elif case.decision == 'REJECT' %}reject{% else %}pending{% endif %}">{{ case.decision }}</span>
+        <a href="/result/{{ case.pk }}/" class="btn btn-ghost btn-sm">View</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="spinner"></div>
+  <div class="loading-title">Analyzing Your Documents…</div>
+  <div class="loading-steps">
+    <div class="l-step" id="ls1">📤 Uploading documents…</div>
+    <div class="l-step" id="ls2">🔍 Running OCR extraction…</div>
+    <div class="l-step" id="ls3">🧬 Extracting clinical entities…</div>
+    <div class="l-step" id="ls4">⚖️ Evaluating 15 insurance rules…</div>
+    <div class="l-step" id="ls5">🤖 Groq AI generating explanation…</div>
+    <div class="l-step" id="ls6">📜 Building appeal letter…</div>
+    <div class="l-step" id="ls7">✅ Finalizing decision…</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+const fileInput = document.getElementById('file-input');
+const dropZone  = document.getElementById('drop-zone');
+const queue     = document.getElementById('file-queue');
+const submitBtn = document.getElementById('submit-btn');
+const form      = document.getElementById('upload-form');
+const overlay   = document.getElementById('loading-overlay');
+const countEl   = document.getElementById('file-count');
+const countNum  = document.getElementById('file-count-num');
+
+let selectedFiles = [];
+
+function iconFor(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  return ext === 'pdf' ? '📄' : '📷';
+}
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/1024/1024).toFixed(1) + ' MB';
+}
+
+function renderQueue() {
+  queue.innerHTML = '';
+  selectedFiles.forEach((f, i) => {
+    const div = document.createElement('div');
+    div.className = 'file-item';
+    div.innerHTML = `
+      <span class="fi-icon">${iconFor(f.name)}</span>
+      <span class="fi-name">${f.name}</span>
+      <span class="fi-size">${formatSize(f.size)}</span>
+      <button class="fi-remove" onclick="removeFile(${i})" title="Remove">×</button>
+    `;
+    queue.appendChild(div);
+  });
+  const count = selectedFiles.length;
+  countEl.style.display = count > 0 ? 'block' : 'none';
+  countNum.textContent = count;
+  submitBtn.disabled = count === 0;
+  // Sync to real input via DataTransfer
+  syncFilesToInput();
+}
+
+function syncFilesToInput() {
+  const dt = new DataTransfer();
+  selectedFiles.forEach(f => dt.items.add(f));
+  fileInput.files = dt.files;
+}
+
+window.removeFile = function(idx) {
+  selectedFiles.splice(idx, 1);
+  renderQueue();
+};
+
+function addFiles(files) {
+  const MAX = 10;
+  for (let f of files) {
+    if (selectedFiles.length >= MAX) { alert(`Max ${MAX} files allowed.`); break; }
+    const ext = f.name.split('.').pop().toLowerCase();
+    if (!['png','jpg','jpeg','pdf'].includes(ext)) {
+      alert(`${f.name} — unsupported format. Use PNG, JPG, JPEG, or PDF.`); continue;
+    }
+    if (f.size > 15*1024*1024) {
+      alert(`${f.name} exceeds 15MB limit.`); continue;
+    }
+    selectedFiles.push(f);
+  }
+  renderQueue();
+}
+
+fileInput.addEventListener('change', () => addFiles(Array.from(fileInput.files)));
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('dragover');
+  addFiles(Array.from(e.dataTransfer.files));
+});
+
+// Loading animation
+form.addEventListener('submit', e => {
+  if (selectedFiles.length === 0) { e.preventDefault(); return; }
+  overlay.classList.add('active');
+  const steps = [1,2,3,4,5,6,7];
+  steps.forEach((n, i) => {
+    setTimeout(() => {
+      if (i > 0) {
+        const prev = document.getElementById(`ls${steps[i-1]}`);
+        prev.classList.remove('active'); prev.classList.add('done');
+        prev.innerHTML = '✅ ' + prev.textContent.replace(/^[^\s]+\s/, '');
+      }
+      document.getElementById(`ls${n}`).classList.add('active');
+    }, i * 2000);
+  });
+});
+</script>
+{% endblock %}
